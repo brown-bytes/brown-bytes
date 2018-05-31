@@ -1,0 +1,27 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?param=$1 [L,QSA]
+
+Options -Indexes
+
+<FilesMatch "\.(uav)$">
+  Header set Content-Disposition attachment
+</FilesMatch>
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# This domain inherits the “PHP” package.
+# php -- END cPanel-generated handler, do not edit
+
+<IfModule mod_deflate.c>
+	AddOutputFilterByType DEFLATE text/plain	
+	AddOutputFilterByType DEFLATE text/html
+	AddOutputFilterByType DEFLATE application/xhtml+xml
+	AddOutputFilterByType DEFLATE application/xml
+	AddOutputFilterByType DEFLATE text/xml	
+	AddOutputFilterByType DEFLATE text/css
+	AddOutputFilterByType DEFLATE text/javascript
+	AddOutputFilterByType DEFLATE application/javascript
+	AddOutputFilterByType DEFLATE application/x-javascript
+	AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
