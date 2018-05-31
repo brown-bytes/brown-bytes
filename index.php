@@ -21,8 +21,22 @@
 
     //create the CMS variable
     $_CMS = CMS::initialize();
+
+	$param = isset($_REQUEST['param']) ? $_REQUEST['param'] : "";
+
+	if (!empty($param)) {
+		list($path,$params) = CMS::getPageEntry("__path__");
+
+		if ($path != "" && $path != "/") {
+			@include($_SERVER['DOCUMENT_ROOT'].$path.".php");
+		} else {
+			header("Location: /");
+		}
+		die();
+	}
+
 	print_r('<pre>');
-	var_dump($_CMS);
+	var_dump($CMS_SITEMAP);
 	print_r('</pre>');
 	var_dump('shit');
 

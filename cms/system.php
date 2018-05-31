@@ -53,6 +53,60 @@ class CMS {
 		$mgr = new ConstantsManager($cms,true);
 		self::$constants = $mgr;
 	}
+	public static function hasLogin() {
+		global $_CMS;
+
+		return strlen($_CMS['user']) > 0;
+	}
+	public static function isAdmin() {
+		global $_CMS;
+
+		$hasrights = AuthenticationChecks::adminOnly();
+		if(!$hasrights)
+		{
+			if(!$_CMS)
+				$_CMS['db'] = self::mysqlConnect();
+
+			$hasrights = AuthenticationChecks::hasRight();
+		}
+		return $hasrights;
+	}
+	public static function getPageEntry($key = "") {
+		global $CMS_SITEMAP;
+
+		$params = array();
+
+		$page = $_SERVER['REDIRECT_URL'];
+		$page = str_replace("index.php","",$page);
+		if (strpos($page,"?") !== FALSE) {
+			$page = substr($page,0,strpos($page,"?"));
+		}
+
+		$param = explode("/",str_replace(".","",$page));
+		$path = "";
+		foreach ($param as $dir) {
+			if (strpos($dir,":") !== FALSE) {
+				$tmp = explode(":",$dir);
+				$params[$tmp[0]] = $tmp[1];
+			} else if (!empty($dir)) {
+				$path .= "/".$dir;
+			}
+		}
+
+		if (empty($path)) $path = "/";
+
+		return self::searchCMSSitemap($CMS_SITEMAP,$path, $key, $params);
+	}
+	private static function searchCMSSitemap($sitemap,$path, $key = "", $params) {
+		foreach($sitemap as $v) {
+			if ($v['file'] == $path) {
+				if ($key == "__path__") return array($path,$params);
+				if (!empty($key)) return $v[$key];
+				return $v;
+			}
+		}
+		return false;
+	}
 }
 
 
