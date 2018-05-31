@@ -6,6 +6,7 @@ $_SERVER['DOCUMENT_ROOT'] = "C:/xampp/htdocs/brown-bytes/";
 require_once($_SERVER['DOCUMENT_ROOT']."cms/constants.php");
 require_once($_SERVER['DOCUMENT_ROOT']."cms/patdbc.php");
 require_once($_SERVER['DOCUMENT_ROOT']."cms/session.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/cms/template.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/cms/constantsmgr.php");
 
 class CMS {
@@ -106,6 +107,12 @@ class CMS {
 			}
 		}
 		return false;
+	}
+	public static function buildPage($params) {
+		//Gets the information from the initiator file and builds the page with the different templates and css files
+		$obj = Template::Factory($params['template']);
+		$obj->buildPage($params);
+		$obj->publish();
 	}
 }
 

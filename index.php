@@ -38,20 +38,26 @@
 	print_r('<pre>');
 	var_dump($CMS_SITEMAP);
 	print_r('</pre>');
-	var_dump('shit');
+	var_dump($param);
+	var_dump($path);
 
 
-	if (!empty($_SERVER['HTTPS']) && ('on' == $_SERVER['HTTPS'])) {
-		$uri = 'https://';
-	} else {
-		$uri = 'http://';
-	}
-	$uri .= $_SERVER['HTTP_HOST'];
-
-
-
-
-	//header('Location: '.$uri.'/dashboard/');
+	require_once("cms/process.php");
+	$params = array(
+			"template"=>'bb',
+			"title"=>'Brown Bytes',
+			'titlekey'=>'HOME_PG_TITLE',
+			'header' => 'frontpage',
+			'columns' => array(
+				'col1' => array(
+					array(
+						'type' => "plugin",
+						'name' => "scrolling"
+					)
+				)
+			)
+	);
+	CMS::buildPage($params);
 	exit;
 ?>
-Something is wrong with the XAMPP installation :-(
+
