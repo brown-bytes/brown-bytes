@@ -6,8 +6,8 @@ $_SERVER['DOCUMENT_ROOT'] = "C:/xampp/htdocs/brown-bytes/";
 require_once($_SERVER['DOCUMENT_ROOT']."cms/constants.php");
 require_once($_SERVER['DOCUMENT_ROOT']."cms/patdbc.php");
 require_once($_SERVER['DOCUMENT_ROOT']."cms/session.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/cms/template.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/cms/constantsmgr.php");
+require_once($_SERVER['DOCUMENT_ROOT']."cms/template.php");
+require_once($_SERVER['DOCUMENT_ROOT']."cms/constantsmgr.php");
 
 class CMS {
 	//get from constants
