@@ -1,5 +1,7 @@
 <?php
+
 use Phalcon\Mvc\User\Component;
+
 /**
  * Elements
  *
@@ -7,59 +9,62 @@ use Phalcon\Mvc\User\Component;
  */
 class Elements extends Component
 {
-    private $_headerMenu = [
-        'navbar-left' => [
-            'index' => [
+
+    private $_headerMenu = array(
+        'navbar-left' => array(
+            'index' => array(
                 'caption' => 'Home',
                 'action' => 'index'
-            ],
-            'invoices' => [
+            ),
+            'invoices' => array(
                 'caption' => 'Invoices',
                 'action' => 'index'
-            ],
-            'about' => [
+            ),
+            'about' => array(
                 'caption' => 'About',
                 'action' => 'index'
-            ],
-            'contact' => [
+            ),
+            'contact' => array(
                 'caption' => 'Contact',
                 'action' => 'index'
-            ],
-        ],
-        'navbar-right' => [
-            'session' => [
+            ),
+        ),
+        'navbar-right' => array(
+            'session' => array(
                 'caption' => 'Log In/Sign Up',
                 'action' => 'index'
-            ],
-        ]
-    ];
-    private $_tabs = [
-        'Invoices' => [
+            ),
+        )
+    );
+
+    private $_tabs = array(
+        'Invoices' => array(
             'controller' => 'invoices',
             'action' => 'index',
             'any' => false
-        ],
-        'Companies' => [
+        ),
+        'Companies' => array(
             'controller' => 'companies',
             'action' => 'index',
             'any' => true
-        ],
-        'Products' => [
+        ),
+        'Products' => array(
             'controller' => 'products',
             'action' => 'index',
             'any' => true
-        ],
-        'Product Types' => [
+        ),
+        'Product Types' => array(
             'controller' => 'producttypes',
             'action' => 'index',
             'any' => true
-        ],
-        'Your Profile' => [
+        ),
+        'Your Profile' => array(
             'controller' => 'invoices',
             'action' => 'profile',
             'any' => false
-        ]
-    ];
+        )
+    );
+
     /**
      * Builds header menu with left and right items
      *
@@ -67,15 +72,17 @@ class Elements extends Component
      */
     public function getMenu()
     {
+
         $auth = $this->session->get('auth');
         if ($auth) {
-            $this->_headerMenu['navbar-right']['session'] = [
+            $this->_headerMenu['navbar-right']['session'] = array(
                 'caption' => 'Log Out',
                 'action' => 'end'
-            ];
+            );
         } else {
             unset($this->_headerMenu['navbar-left']['invoices']);
         }
+
         $controllerName = $this->view->getControllerName();
         foreach ($this->_headerMenu as $position => $menu) {
             echo '<div class="nav-collapse">';
@@ -92,7 +99,9 @@ class Elements extends Component
             echo '</ul>';
             echo '</div>';
         }
+
     }
+
     /**
      * Returns menu tabs
      */
@@ -112,4 +121,3 @@ class Elements extends Component
         echo '</ul>';
     }
 }
-?>

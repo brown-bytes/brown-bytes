@@ -1,17 +1,18 @@
 <?php
-use Phalcon\Mvc\Controller;
 
-class IndexController extends Controller
+class IndexController extends ControllerBase
 {
-    public function indexAction() {
-        // Add CSS resources
-        $this->assets->addCss('css/bootstrap.min.css');
-        //$this->assets->addCss('css/index.css');
+    public function initialize()
+    {
+        $this->tag->setTitle('Welcome');
+        parent::initialize();
+    }
 
-        // And JavaScript resources
-        //$this->assets->addJs('js/jquery.js');
-        $this->assets->addJs('js/bootstrap.min.js');
+    public function indexAction()
+    {
+        if (!$this->request->isPost()) {
+            $this->flash->notice('This is a sample application of the Phalcon Framework.
+                Please don\'t provide us any personal information. Thanks');
+        }
     }
 }
-
-?>
