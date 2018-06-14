@@ -23,7 +23,6 @@ class RegisterController extends ControllerBase
         if ($this->request->isPost()) {
 
             $name = $this->request->getPost('name', array('string', 'striptags'));
-            $username = $this->request->getPost('username', 'alphanum');
             $email = $this->request->getPost('email', 'email');
             $password = $this->request->getPost('password');
             $repeatPassword = $this->request->getPost('repeatPassword');
@@ -34,12 +33,18 @@ class RegisterController extends ControllerBase
             }
 
             $user = new Users();
-            $user->username = $username;
             $user->password = sha1($password);
             $user->name = $name;
             $user->email = $email;
-            $user->created_at = new Phalcon\Db\RawValue('now()');
-            $user->active = 'Y';
+            $user->created_on = new Phalcon\Db\RawValue('now()');
+            
+            //setup for backend user preferences
+            $user->status = 0;
+            $user->last_login = new Phalcon\Db\RawValue('now()');
+            $user->verify = uniqid();
+            $user->admin = 0;
+            $user->api_private = md5(uniqid(rand(), true));
+
             if ($user->save() == false) {
                 foreach ($user->getMessages() as $message) {
                     $this->flash->error((string) $message);

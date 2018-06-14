@@ -22,17 +22,6 @@ class RegisterForm extends Form
         ));
         $this->add($name);
 
-        // Name
-        $name = new Text('username');
-        $name->setLabel('Username');
-        $name->setFilters(array('alpha'));
-        $name->addValidators(array(
-            new PresenceOf(array(
-                'message' => 'Please enter your desired user name'
-            ))
-        ));
-        $this->add($name);
-
         // Email
         $email = new Text('email');
         $email->setLabel('E-Mail');

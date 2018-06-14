@@ -21,17 +21,6 @@
         </div>
 
         <div class="control-group">
-            {{ form.label('username', ['class': 'control-label']) }}
-            <div class="controls">
-                {{ form.render('username', ['class': 'form-control']) }}
-                <p class="help-block">(required)</p>
-                <div class="alert alert-warning" id="username_alert">
-                    <strong>Warning!</strong> Please enter your desired user name
-                </div>
-            </div>
-        </div>
-
-        <div class="control-group">
             {{ form.label('email', ['class': 'control-label']) }}
             <div class="controls">
                 {{ form.render('email', ['class': 'form-control']) }}
