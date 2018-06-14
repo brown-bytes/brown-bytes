@@ -44,6 +44,7 @@ class RegisterController extends ControllerBase
             $user->verify = uniqid();
             $user->admin = 0;
             $user->api_private = md5(uniqid(rand(), true));
+            $user->timestamp = new Phalcon\Db\RawValue('now()');
 
             if ($user->save() == false) {
                 foreach ($user->getMessages() as $message) {
@@ -52,7 +53,7 @@ class RegisterController extends ControllerBase
             } else {
                 $this->tag->setDefault('email', '');
                 $this->tag->setDefault('password', '');
-                $this->flash->success('Thanks for sign-up, please log-in to start generating invoices');
+                $this->flash->success('Thank you for signing up, please log in.');
                 return $this->forward('session/index');
             }
         }

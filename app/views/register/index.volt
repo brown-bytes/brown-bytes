@@ -43,9 +43,9 @@
         </div>
 
         <div class="control-group">
-            <label class="control-label" for="repeatPassword">Repeat Password</label>
+            {{ form.label('repeatpassword', ['class': 'control-label']) }}
             <div class="controls">
-                {{ password_field('repeatPassword', 'class': 'input-xlarge') }}
+                {{ form.render('repeatpassword', ['class': 'form-control']) }}
                 <div class="alert" id="repeatPassword_alert">
                     <strong>Warning!</strong> The password does not match
                 </div>
@@ -54,7 +54,7 @@
 
         <div class="form-actions">
             {{ submit_button('Register', 'class': 'btn btn-primary', 'onclick': 'return SignUp.validate();') }}
-            <p class="help-block">By signing up, you accept terms of use and privacy policy.</p>
+            <p class="help-block">By registering, you accept terms of use and privacy policy.</p>
         </div>
 
     </fieldset>

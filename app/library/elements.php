@@ -16,8 +16,8 @@ class Elements extends Component
                 'caption' => 'Home',
                 'action' => 'index'
             ),
-            'invoices' => array(
-                'caption' => 'Invoices',
+            'market' => array(
+                'caption' => 'Market',
                 'action' => 'index'
             ),
             'about' => array(
@@ -38,17 +38,17 @@ class Elements extends Component
     );
 
     private $_tabs = array(
-        'Invoices' => array(
+        'Overview' => array(
             'controller' => 'invoices',
             'action' => 'index',
             'any' => false
         ),
-        'Companies' => array(
+        'Payments' => array(
             'controller' => 'companies',
             'action' => 'index',
             'any' => true
         ),
-        'Products' => array(
+        'Privacy' => array(
             'controller' => 'products',
             'action' => 'index',
             'any' => true
