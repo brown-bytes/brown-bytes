@@ -51,7 +51,7 @@
                 </div>
             </div>
         </div>
-
+        <br />
         <div class="form-actions">
             {{ submit_button('Register', 'class': 'btn btn-primary', 'onclick': 'return SignUp.validate();') }}
             <p class="help-block">By registering, you accept terms of use and privacy policy.</p>
