@@ -43,9 +43,9 @@
         </div>
 
         <div class="control-group">
-            {{ form.label('repeatpassword', ['class': 'control-label']) }}
+            {{ form.label('repeatPassword', ['class': 'control-label']) }}
             <div class="controls">
-                {{ form.render('repeatpassword', ['class': 'form-control']) }}
+                {{ form.render('repeatPassword', ['class': 'form-control']) }}
                 <div class="alert" id="repeatPassword_alert">
                     <strong>Warning!</strong> The password does not match
                 </div>

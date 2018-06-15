@@ -72,8 +72,7 @@ class Elements extends Component
      *
      * @return string
      */
-    public function getMenu() {}
-
+    public function getMenu() {
         $auth = $this->session->get('auth');
         if ($auth) {
             $this->_headerMenu['navbar-right']['session'] = array(
@@ -128,35 +127,35 @@ class Elements extends Component
     private $_mainPanels = array(
         'welcome' => array(
             'appear' => 0,
-            'path' => 'views/homepage-panels/welcome'
+            'path' => 'homepage-panels/welcome'
         ),
         'market_snapshot' => array(
             'appear' => 2,
-            'path' => 'views/homepage-panels/market'
+            'path' => 'homepage-panels/market'
         ),
         'authenticate' => array(
             'appear' => 0,
-            'path' => 'views/homepage-panels/authenticate'
+            'path' => 'homepage-panels/authenticate'
         ),
         'community' => array(
             'appear' => 0,
-            'path' => 'views/homepage-panels/community'
+            'path' => 'homepage-panels/community'
         ),
         'user' => array(
             'appear' => 1,
-            'path' => 'views/homepage-panels/user'
+            'path' => 'homepage-panels/user'
         ),
         'alternates' => array(
             'appear' => 2,
-            'path' => 'views/homepage-panels/alternates'
+            'path' => 'homepage-panels/alternates'
         ),
         'pangea' => array(
             'appear' => 2,
-            'path' => 'views/homepage-panels/pangea'
+            'path' => 'homepage-panels/pangea'
         ),
         'development' => array(
             'appear' => 2,
-            'path' => 'views/homepage-panels/development'
+            'path' => 'homepage-panels/development'
         )
     );
 
@@ -167,12 +166,13 @@ class Elements extends Component
         $auth = $this->session->get('auth');
         $paths = array();
         foreach ($this->_mainPanels as $name => $info) {
+            print_r($info['appear']);
             if ($info['appear'] == 2) {
-                $paths['$name'] = $info['path'];
+                $paths[$name] = $info['path'];
             } else if ($info['appear'] == 1 && $auth) {
-                $paths['$name'] = $info['path'];
+                $paths[$name] = $info['path'];
             } else if (!$info['appear'] && !$auth) {
-                $paths['$name'] = $info['path'];
+                $paths[$name] = $info['path'];
             } else {
                 continue;
             }

@@ -39,14 +39,8 @@ class ContactController extends ControllerBase
             return $this->forward('contact/index');
         }
 
-        if ($contact->save() == false) {
-            foreach ($contact->getMessages() as $message) {
-                $this->flash->error($message);
-            }
-            return $this->forward('contact/index');
-        }
+        mail('scott@huson.com', 'Feedback For Brown Bytes', serialize($data));
 
-        $this->flash->success('Thanks, we will contact you in the next few hours');
-        return $this->forward('index/index');
+        $this->flash->success('Thank you for your feedback. I appreciate your help in making this application better.');
     }
 }

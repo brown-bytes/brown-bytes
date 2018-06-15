@@ -2,10 +2,10 @@
 {{ content() }}
 
 <div class="page-header">
-    <h2>Contact Us</h2>
+    <h2>Contact</h2>
 </div>
 
-<p>Send us a message and let us know how we can help. Please be as descriptive as possible as it will help us serve you better.</p>
+<p>Send me a message and let me know what you think, how this application can improve, or if you would like to contribute.</p>
 
 {{ form('contact/send', 'role': 'form') }}
     <fieldset>

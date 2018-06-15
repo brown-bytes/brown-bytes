@@ -1,5 +1,5 @@
 <?php
-echo "Testing Environment";
+//echo "Testing Environment";
 
 
 error_reporting(E_ALL);
