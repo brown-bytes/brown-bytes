@@ -153,6 +153,10 @@ class Elements extends Component
             'appear' => 2,
             'path' => 'homepage-panels/pangea'
         ),
+        'calendar' => array(
+            'appear' => 2,
+            'path' => 'homepage-panels/brownbites'
+        ),
         'development' => array(
             'appear' => 2,
             'path' => 'homepage-panels/development'
@@ -166,7 +170,6 @@ class Elements extends Component
         $auth = $this->session->get('auth');
         $paths = array();
         foreach ($this->_mainPanels as $name => $info) {
-            print_r($info['appear']);
             if ($info['appear'] == 2) {
                 $paths[$name] = $info['path'];
             } else if ($info['appear'] == 1 && $auth) {
