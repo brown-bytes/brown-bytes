@@ -65,13 +65,14 @@ class Elements extends Component
         )
     );
 
+    
+
     /**
      * Builds header menu with left and right items
      *
      * @return string
      */
-    public function getMenu()
-    {
+    public function getMenu() {}
 
         $auth = $this->session->get('auth');
         if ($auth) {
@@ -105,8 +106,7 @@ class Elements extends Component
     /**
      * Returns menu tabs
      */
-    public function getTabs()
-    {
+    public function getTabs() {
         $controllerName = $this->view->getControllerName();
         $actionName = $this->view->getActionName();
         echo '<ul class="nav nav-tabs">';
@@ -119,5 +119,64 @@ class Elements extends Component
             echo $this->tag->linkTo($option['controller'] . '/' . $option['action'], $caption), '</li>';
         }
         echo '</ul>';
+    }
+
+    //these are the panels that will appear on the homepage of the website, the appear variable determines when they appear
+    //0 only not logged in
+    //1 only logged in
+    //2 all the time
+    private $_mainPanels = array(
+        'welcome' => array(
+            'appear' => 0,
+            'path' => 'views/homepage-panels/welcome'
+        ),
+        'market_snapshot' => array(
+            'appear' => 2,
+            'path' => 'views/homepage-panels/market'
+        ),
+        'authenticate' => array(
+            'appear' => 0,
+            'path' => 'views/homepage-panels/authenticate'
+        ),
+        'community' => array(
+            'appear' => 0,
+            'path' => 'views/homepage-panels/community'
+        ),
+        'user' => array(
+            'appear' => 1,
+            'path' => 'views/homepage-panels/user'
+        ),
+        'alternates' => array(
+            'appear' => 2,
+            'path' => 'views/homepage-panels/alternates'
+        ),
+        'pangea' => array(
+            'appear' => 2,
+            'path' => 'views/homepage-panels/pangea'
+        ),
+        'development' => array(
+            'appear' => 2,
+            'path' => 'views/homepage-panels/development'
+        )
+    );
+
+    /**
+     * returns main menu panels
+     */
+    public function getMainPanels() {
+        $auth = $this->session->get('auth');
+        $paths = array();
+        foreach ($this->_mainPanels as $name => $info) {
+            if ($info['appear'] == 2) {
+                $paths['$name'] = $info['path'];
+            } else if ($info['appear'] == 1 && $auth) {
+                $paths['$name'] = $info['path'];
+            } else if (!$info['appear'] && !$auth) {
+                $paths['$name'] = $info['path'];
+            } else {
+                continue;
+            }
+        }
+        return $paths;
     }
 }
