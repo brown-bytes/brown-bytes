@@ -69,11 +69,34 @@ class Market extends Component {
     public function getUserTransactions() {
         $user_id = $this->session->get('auth')['id'];
         /* The query I want to execute
-            SELECT trans.*, add.* FROM cms__user_address add LEFT JOIN plugins__transactions trans ON add.address=trans.sender_address WHERE add.user_id={$user_id}
+            SELECT trans.*, addr.* FROM plugin__transaction trans LEFT JOIN cms__user_address addr ON addr.address=trans.sender_address WHERE addr.user_id={$user_id}
             //WHY THE FUCK IS IT SO HARD FOR PHALCON TO DO THAT?
         */
+        //This is the query builder, maybe I should use CMS that would be easier honestly
+        $query = $this->modelsManager->createQuery('SELECT trans.*, addr.* FROM Transaction trans LEFT JOIN Address addr ON addr.address=trans.sender_address WHERE addr.user_id='.((int)$user_id));
+        $result = $query->execute();
+        
+        /*//adds the transactions
+        $builder->from(
+            [
+                'trans' => 'Transaction'
+            ]
+        );
+        //joins the addresses
+        $builder->join('Address', 'trans.sender_address = addr.address', 'addr', 'LEFT');
+        //the where
+        $builder->where('user_id = :user_id:', ['user_id' => $user_id]);
+        $builder->orderBy('trans.timestamp DESC');
+        $builder->limit(20);
+        $transactions = $builder->getQuery();
 
-
+        */
+        foreach ($result as $tran) {
+            var_dump($tran);
+            die();
+        }
+        
+        die();
 
     }
     /**
