@@ -127,5 +127,9 @@ class Services extends \Base\Services
     {
         return new Elements();
     }
+    protected function initMarket() {
+        
+        return new Market();
+    }
 
 }

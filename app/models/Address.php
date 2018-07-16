@@ -4,7 +4,19 @@ use Phalcon\Mvc\Model;
 
 class Address extends Model
 {
-    
+    private $id;
+
+    public $address;
+
+    private $anonymous;
+
+    private $user_id;
+
+    private $timestamp;
+
+    public function beforeSave(){
+        
+    }
 
     public function initialize()
     {

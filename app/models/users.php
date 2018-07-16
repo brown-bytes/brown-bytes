@@ -6,12 +6,19 @@ use Phalcon\Mvc\Model\Validator\Uniqueness as UniquenessValidator;
 
 class Users extends Model
 {   
+    private $id;
+
+    private $name;
+
+    private $admin;
+
+
     public function initialize()
     {
-        $this->setSource('cms__user');
+        $this->setSource('cms__users');
     }
 
-    public static function isAdmin() {
+    public function isAdmin() {
         return $this->admin;
     }
 
@@ -28,5 +35,13 @@ class Users extends Model
         if ($this->validationHasFailed() == true) {
             return false;
         }
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function getId() {
+        return $this->id;
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * SessionController
  *
@@ -16,8 +17,11 @@ class SessionController extends ControllerBase
     public function indexAction()
     {
         if (!$this->request->isPost()) {
-            $this->tag->setDefault('email', 'demo@phalconphp.com');
-            $this->tag->setDefault('password', 'phalcon');
+            $this->tag->setDefault('email', 'paxton@brown.edu');
+            $this->tag->setDefault('password', 'password');
+        }
+        if ($this->session->get('auth')) {
+            return $this->forward('dashboard');
         }
     }
 
@@ -29,14 +33,18 @@ class SessionController extends ControllerBase
     private function _registerSession(Users $user)
     {
         $this->session->set('auth', array(
-            'id' => $user->id,
+            'id' => $user->getId(),
             'email' => $user->email,
-            'admin' => $user->admin,
+            'admin' => $user->isAdmin(),
             'data' => array(
                 'name' => $user->name,
                 'status' => $user->status,
             )
         ));
+
+        if ($user->isAdmin()) {
+            $this->session->admin = true;
+        }
     }
 
     /**
@@ -56,7 +64,7 @@ class SessionController extends ControllerBase
             if ($user != false) {
                 $this->_registerSession($user);
                 $this->flash->success('Welcome ' . $user->name);
-                return $this->forward('invoices/index');
+                return $this->forward('dashboard/index');
             }
 
             $this->flash->error('Wrong email/password');
@@ -75,5 +83,8 @@ class SessionController extends ControllerBase
         $this->session->remove('auth');
         $this->flash->success('Goodbye!');
         return $this->forward('index/index');
+    }
+    public function dashboardAction() {
+        return $this->forward('dashboard/index');
     }
 }

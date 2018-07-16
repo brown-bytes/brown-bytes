@@ -22,7 +22,8 @@ class SecurityPlugin extends Plugin
 	 */
 	public function getAcl()
 	{
-		if (!isset($this->persistent->acl)) {
+		//if the cache is being fucked and showing 404s, just set this to while true -scott
+		if (true) {  //!isset($this->persistent->acl)) {
 
 			$acl = new AclList();
 
@@ -46,14 +47,16 @@ class SecurityPlugin extends Plugin
 
 			//Private area resources
 			$privateResources = array(
-				'companies'    => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
+				'transaction'    => array('index', 'new', 'info', 'create', 'delete'),
 				'products'     => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
 				'producttypes' => array('index', 'search', 'new', 'edit', 'save', 'create', 'delete'),
-				'invoices'     => array('index', 'profile')
+				'dashboard'     => array('index', 'profile')
 			);
 			foreach ($privateResources as $resource => $actions) {
 				$acl->addResource(new Resource($resource), $actions);
 			}
+
+
 
 			//Public area resources
 			$publicResources = array(
@@ -79,7 +82,8 @@ class SecurityPlugin extends Plugin
 
 			//Grant access to private area to role Users
 			foreach ($privateResources as $resource => $actions) {
-				foreach ($actions as $action){
+				foreach ($actions as $action) {
+					//echo $resource;
 					$acl->allow('Users', $resource, $action);
 				}
 			}
@@ -87,7 +91,6 @@ class SecurityPlugin extends Plugin
 			//The acl is stored in session, APC would be useful here too
 			$this->persistent->acl = $acl;
 		}
-
 		return $this->persistent->acl;
 	}
 
@@ -113,7 +116,10 @@ class SecurityPlugin extends Plugin
 
 		$acl = $this->getAcl();
 
+	
 		if (!$acl->isResource($controller)) {
+			
+			
 			$dispatcher->forward([
 				'controller' => 'errors',
 				'action'     => 'show404'

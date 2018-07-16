@@ -1,4 +1,4 @@
-<h2>Your Invoices</h2>
+<h2>Your Transactions</h2>
 
 <table class="table table-bordered table-striped">
     <thead>

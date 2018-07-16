@@ -10,6 +10,8 @@ use Phalcon\Config\Adapter\Ini as ConfigIni;
 try {
     define('APP_PATH', realpath('..') . '/');
 
+    //\Phalcon\Mvc\Model::setup(['notNullValidations' => false]);
+
     /**
      * Read the configuration
      */
@@ -26,9 +28,14 @@ try {
 
     $application = new Application(new Services($config));
 
+    
+
     // NGINX - PHP-FPM already set PATH_INFO variable to handle route
     echo $application->handle(!empty($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : null)->getContent();
 } catch (Exception $e){
     echo $e->getMessage() . '<br>';
     echo '<pre>' . $e->getTraceAsString() . '</pre>';
 }
+
+
+

@@ -39,27 +39,22 @@ class Elements extends Component
 
     private $_tabs = array(
         'Overview' => array(
-            'controller' => 'invoices',
+            'controller' => 'dashboard',
             'action' => 'index',
             'any' => false
         ),
-        'Payments' => array(
-            'controller' => 'companies',
+        'My Offers' => array(
+            'controller' => 'transaction',
             'action' => 'index',
             'any' => true
         ),
         'Privacy' => array(
-            'controller' => 'products',
+            'controller' => 'statistics',
             'action' => 'index',
             'any' => true
         ),
-        'Product Types' => array(
-            'controller' => 'producttypes',
-            'action' => 'index',
-            'any' => true
-        ),
-        'Your Profile' => array(
-            'controller' => 'invoices',
+        'My Profile' => array(
+            'controller' => 'dashboard',
             'action' => 'profile',
             'any' => false
         )
@@ -75,10 +70,15 @@ class Elements extends Component
     public function getMenu() {
         $auth = $this->session->get('auth');
         if ($auth) {
+            $this->_headerMenu['navbar-left']['dashboard'] = array(
+                'caption' => 'Profile',
+                'action' => 'index'
+            );
             $this->_headerMenu['navbar-right']['session'] = array(
                 'caption' => 'Log Out',
                 'action' => 'end'
             );
+            
         } else {
             unset($this->_headerMenu['navbar-left']['invoices']);
         }

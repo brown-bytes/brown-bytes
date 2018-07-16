@@ -2,7 +2,13 @@
 {{ content() }}
 
 <div class="profile left">
-    {{ form('invoices/profile', 'id': 'profileForm', 'onbeforesubmit': 'return false') }}
+    
+    <br />
+    <p>
+    Since all of the information stored in your profile is verified, we do not allow any users to change their personal information. See our <a href="/privacy">privacy section</a> for more about the kinds of information we collect and who has access to that information. 
+    </p>
+    {{ form('dashboard/profile', 'id': 'profileForm', 'onbeforesubmit': 'return false') }}
+        <br />
         <div class="clearfix">
             <label for="name">Your Full Name:</label>
             <div class="input">
@@ -12,19 +18,11 @@
                 </div>
             </div>
         </div>
-        <div class="clearfix">
-            <label for="email">Email Address:</label>
-            <div class="input">
-                {{ text_field("email", "size": "30", "class": "span6") }}
-                <div class="alert" id="email_alert">
-                    <strong>Warning!</strong> Please enter your email
-                </div>
-            </div>
-        </div>
+        <br/> 
         <div class="clearfix">
             <input type="button" value="Update" class="btn btn-primary btn-large btn-info" onclick="Profile.validate()">
             &nbsp;
-            {{ link_to('invoices/index', 'Cancel') }}
+            {{ link_to('dashboard/index', 'Cancel') }}
         </div>
     </form>
 </div>

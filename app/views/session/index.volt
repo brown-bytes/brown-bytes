@@ -10,7 +10,7 @@
         {{ form('session/start', 'role': 'form') }}
             <fieldset>
                 <div class="form-group">
-                    <label for="email">Username/Email</label>
+                    <label for="email">Email</label>
                     <div class="controls">
                         {{ text_field('email', 'class': "form-control") }}
                     </div>
@@ -34,11 +34,11 @@
             <h2>Don't have an account yet?</h2>
         </div>
 
-        <p>Create an account offers the following advantages:</p>
+        <p>Create an account to be able to use the platform best:</p>
         <ul>
-            <li>Create, track and export your invoices online</li>
-            <li>Gain critical insights into how your business is doing</li>
-            <li>Stay informed about promotions and special packages</li>
+            <li>Create, track and manage offers</li>
+            <li>Get compensated when you give away meal credits</li>
+            <li>Stay informed about Brown Bytes changes and updates</li>
         </ul>
 
         <div class="clearfix center">
