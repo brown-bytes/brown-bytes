@@ -1,10 +1,10 @@
-Brown Record for Exchange of Non-Fungible Goods
-Catchy Name: Brown Bytes
-Author: Scott B Huson (2021.5)
-Updated: May 15th, 2018
+Brown Record for Exchange of Non-Fungible Goods<br/>
+Catchy Name: Brown Bytes<br/>
+Author: Scott B Huson (2021.5) <br/>
+Updated: May 15th, 2018 \n
 Plans for V0.1 Completed by September 2018 for community release
 
-Table of Contents:
+Table of Contents:<br/>
 Abstract:	1
 Problem Statement:	1
 The System:	2
@@ -12,9 +12,9 @@ Legal:	2
 Outline of the platform:	3
 Long Term Plan:	4
 Expected Growth (Updated):	5
-System Design:	7
+System Design:	7<br/>
 
-Abstract:
+Abstract:<br/>
 The goal of this project is to enable the transmission and liquidity of non-liquid storage of value, in a closed community such as a college campus. Through the construction of a platform of exchange and fully floating unit to be implemented, it will be studied how the appearance of liquidity and credit can artificially effect traditionally non-transferrable goods. Additionally, the optimal methods of platform introduction, community adoption, and rate of growth will be studied to aid in the development of more robust, flexible, and accessible solutions. Since the goal of the study/project is purely meant to be the empirical implementation of ideas only studied theoretically in a classroom setting, the monetary involvement of creating a universal transfer of value is only for the good of the community and does not bring any benefit besides experience to its creators and inventors. 
 Problem Statement:
 College campuses are highly competitive markets with an active peer to peer marketplace. College campuses traditionally have a low supply of actual currency, due to the fact that many college students are cheap. In a closed market economy, the low supply of a medium of exchange would cause the value of the currency to be higher than it would be if the supply were normal. This predicted appreciation in currency value is held artificially high by the use of currency everywhere else. Also, due to the cheap nature of college students, their habits of moving from place to place, and other factors, in many college campuses there is a lot of stuff that students would like to sell. Overall college campuses are markets with little liquidity due to the lack of currency but also a large potential market. 
