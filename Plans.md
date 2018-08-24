@@ -123,6 +123,10 @@ June 13, 2018:
 July 18, 2018:
 	Finished the main interface and page have moved drastically closer to actual working prototypes. Decided that will implent basic scaffolds for the entire protocol first to allow early launch dates. 
 	Initially will begin with a platform to publish food donation offers, and incuding calendar updates provided by Brown Bites(facebook). Later the full transaction protocol will be released with user balances and leveled statuses. Phalcon php framework drastically reduced the amount of grunt work, and the INVO sample application really helped get a working model to build on the database integration. Fuck PHQL honestly tho, SQL rules!
+August 24, 2018:
+	Finished the main portion of the website, including user profiles and offer creation. The system works in every way, and has been tested to a certain extent. The transaction protocol is scaffolded but has not been implemented on the website in a way that will alloy users to create transactions from offers. In this way I plan to develop the transaction protocol while the offer section of the website is live. The phalcon is super helpful and its really made things alot faster, making what I like to do (backend database stuff) easy while the styling is pretty much done for me.<br/>
+	I have bought the domain brownbytes.org, and I plan to move the server over in the coming weeks? Today I am planning on integrating the Brown bites calendar into the application, may have to change the database offer date protocol. 
+	As soon as I can put the site live, I can post on facebook groups for visibility and hopefully get some exposure before I release V1. Peace!
 
 
 
