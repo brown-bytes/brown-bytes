@@ -61,7 +61,7 @@ class SessionController extends ControllerBase
                 'bind' => array('email' => $email, 'password' => sha1($password))
                 
             ));
-            if ($user != false) {
+            if ($user != false) { //;)
                 $this->_registerSession($user);
                 $this->flash->success('Welcome ' . $user->name);
                 return $this->forward('dashboard/index');
@@ -79,10 +79,14 @@ class SessionController extends ControllerBase
      * @return unknown
      */
     public function endAction()
-    {
+    {   
+
         $this->session->remove('auth');
         $this->flash->success('Goodbye!');
         return $this->forward('index/index');
+    }
+    public function verifyAction($key) {
+
     }
     public function dashboardAction() {
         return $this->forward('dashboard/index');

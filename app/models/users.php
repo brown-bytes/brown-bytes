@@ -6,11 +6,11 @@ use Phalcon\Mvc\Model\Validator\Uniqueness as UniquenessValidator;
 
 class Users extends Model
 {   
-    private $id;
+    protected $id;
 
-    private $name;
+    protected $name;
 
-    private $admin;
+    protected $admin;
 
 
     public function initialize()

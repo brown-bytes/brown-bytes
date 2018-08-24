@@ -61,7 +61,6 @@ class TransactionController extends ControllerBase
 
         $form = new TransactionForm;
         $transaction = new Transaction();
-        //$temp = Transaction::setup(['notNullValidations' => false]);
         //This fucking thing was preventing nulls
 
         $data = $this->request->getPost();

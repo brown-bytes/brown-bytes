@@ -16,8 +16,8 @@ class Elements extends Component
                 'caption' => 'Home',
                 'action' => 'index'
             ),
-            'market' => array(
-                'caption' => 'Market',
+            'marketplace' => array(
+                'caption' => 'Marketplace',
                 'action' => 'index'
             ),
             'about' => array(
@@ -44,14 +44,14 @@ class Elements extends Component
             'any' => false
         ),
         'My Offers' => array(
-            'controller' => 'transaction',
-            'action' => 'index',
-            'any' => true
+            'controller' => 'dashboard',
+            'action' => 'offers',
+            'any' => false
         ),
         'Privacy' => array(
-            'controller' => 'statistics',
-            'action' => 'index',
-            'any' => true
+            'controller' => 'dashboard',
+            'action' => 'privacy',
+            'any' => false
         ),
         'My Profile' => array(
             'controller' => 'dashboard',
