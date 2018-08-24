@@ -56,11 +56,12 @@ class SessionController extends ControllerBase
         if ($this->request->isPost()) {
             $email = $this->request->getPost('email');
             $password = $this->request->getPost('password');
-            $user = Users::findFirst(array(
-                "(email = :email:) AND password = :password: AND status > '0'",
-                'bind' => array('email' => $email, 'password' => sha1($password))
-                
-            ));
+            $user = Users::findFirst(
+                array(
+                    "(email = :email:) AND password = :password: AND status > '0'",
+                    'bind' => array('email' => $email, 'password' => sha1($password)) 
+                )
+            );
             if ($user != false) { //;)
                 $this->_registerSession($user);
                 $this->flash->success('Welcome ' . $user->name);
@@ -80,12 +81,28 @@ class SessionController extends ControllerBase
      */
     public function endAction()
     {   
-
         $this->session->remove('auth');
         $this->flash->success('Goodbye!');
         return $this->forward('index/index');
     }
     public function verifyAction($key) {
+        $user = Users::findFirst(
+            array(
+                "verify = :uniqid: AND status = '0'",
+                "bind" => array('uniqid' => $key)
+            )
+        );
+        if($user != false){
+            $user->status = 1;
+            if($user->save() == false) {
+                $this->flash->success("Internal error could not verify");
+                $this->forward('session/index');
+            }
+            $this->flash->success("Thank you for verifying ".$user->name.".");
+            $this->forward('session/index');
+        } else {
+            $this->forward('session/index');
+        }
 
     }
     public function dashboardAction() {

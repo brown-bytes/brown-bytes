@@ -48,7 +48,12 @@
                 	</td>
                 {% endif %}   
             </tr>
-        {% endfor %} 
+        {% endfor %}
     </tbody>
 </table>
 
+{% if offers|length is 0 %}
+<br/> 
+<p style="text-center">There are no current offers</p>
+<br/>
+{% endif %}

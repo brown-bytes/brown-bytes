@@ -11,6 +11,19 @@ class DashboardController extends ControllerBase
     }
 
     public function indexAction() {
+        $market = new Market();
+        $offers = $market->getOffers(array('user_id = '.$this->session->get('auth')['id'].' AND expires > '.time()));
+        $table_offers = array();
+        foreach($offers as $offer) {
+            $offer->expiration = $this->getRemaining($offer->expires, time());
+            $offer->location = Locations::findFirstById($offer->location)->title;
+            $offer->offer_id = $offer->getId();
+            $offer->activity = $offer->getActivity();
+
+            $table_offers[] = $offer;
+        }
+        
+        $this->view->offers = $table_offers;
     }
 
     /**
@@ -46,7 +59,30 @@ class DashboardController extends ControllerBase
 
 
         $this->view->offers = $table_offers;
-        //var_dump($offers);
-        //die();
+    }
+    /**
+     * Gets remaining time until a date
+     *
+     */
+    public function getRemaining($time, $curr_time) {
+        $difference = $curr_time - $time;
+        //seconds
+        if($difference <= 60) {
+            return "Less than a minute.";
+        } 
+        //minutes
+        $difference = $difference/60;
+        if (($difference) <= 60) { 
+            return (int)$difference." minutes.";
+        }
+        //hours
+        $difference = $difference/60; 
+        if (($difference) <= 24) { 
+            return (int)$difference." hours.";
+        }
+
+        $difference = $difference/24; 
+        
+        return (int)$difference." days.";
     }
 }

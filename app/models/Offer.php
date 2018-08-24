@@ -67,4 +67,9 @@ class Offer extends Model
     public function isOwner($user) {
         return ($user == $this->user_id);
     }
+    public function getActivity() {
+        $comments = Comment::find("offer_id = '".$this->id."'");
+        return count($comments);
+
+    }
 }
