@@ -7,6 +7,14 @@
 
 <br />
 <br />
+<div class="row">
+	<div class="col-lg-4"><h3>See more about the Brown Bytes project on GitHub<h3/></div>
+	<div class="col-lg-6">
+		<a href="https://github.com/scott-huson/brown-bytes" target="_blank">
+			<img src="/img/github.jpg" alt="Could not load" style="max-height:100%; max-width:100%;">
+		</a>
+	</div>
+</div>
 <br />
 <br />
 

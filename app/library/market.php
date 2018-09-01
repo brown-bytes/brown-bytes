@@ -127,7 +127,7 @@ class Market extends Component {
      * @return Array
      **/
     public function getCurrentOffers() {
-        $offers = Offer::find(array(' expires > '.time(), 'order' => 'timestamp DESC'));
+        $offers = Offer::find(array(' expires > '.time().' AND created < '.time(), 'order' => 'timestamp DESC'));
 
         //empty case
         $return = array();

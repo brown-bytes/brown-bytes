@@ -5,7 +5,7 @@
     
     <br />
     <p>
-    Since all of the information stored in your profile is verified, we do not allow any users to change their personal information. See our <a href="/privacy">privacy section</a> for more about the kinds of information we collect and who has access to that information. 
+    Since all of the information stored in your profile is verified, we do not allow any users to change their personal information. See our <a href="/dashboard/privacy">privacy section</a> for more about the kinds of information we collect and who has access to that information. 
     </p>
     {{ form('dashboard/profile', 'id': 'profileForm', 'onbeforesubmit': 'return false') }}
         <br />
