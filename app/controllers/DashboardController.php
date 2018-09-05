@@ -50,6 +50,7 @@ class DashboardController extends ControllerBase
     public function offersAction() {
         $market = new Market();
         $offers = $market->getOffers(array('user_id = '.$this->session->get('auth')['id']));
+        $table_offers = array();
         foreach($offers as $offer) {
             $offer->status = (time() >= $offer->expires ? 0 : 1);
             $offer->date = date('d-m-Y', strtotime($offer->timestamp));

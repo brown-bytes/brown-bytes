@@ -2,7 +2,7 @@
 //echo "Testing Environment";
 
 
-error_reporting(E_ALL);
+error_reporting('E_NONE');
 
 use Phalcon\Mvc\Application;
 use Phalcon\Config\Adapter\Ini as ConfigIni;

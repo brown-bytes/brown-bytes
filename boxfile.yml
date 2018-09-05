@@ -1,0 +1,34 @@
+run.config:
+  engine: php
+  engine.config:
+    error_reporting: E_ALL
+    backup_globals: true
+    runtime: php-7.1
+    webserver: apache
+    document_root: public
+    extensions:
+      - curl
+      - gettext
+      - gd
+      - json
+      - mbstring
+      - bz2
+      - zlib
+      - hash
+      - pdo
+      - pdo_mysql
+      - fileinfo
+      - phalcon
+      - session
+
+    
+  extra_steps:
+    - echo "alias phalcon=\'phalcon.php\'" >> /data/var/home/gonano/.bashrc
+
+web.main:
+  start: php-server
+  writable_dirs:
+    - cache
+
+data.mysql:
+  image: nanobox/mysql:5.7

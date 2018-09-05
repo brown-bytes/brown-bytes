@@ -129,6 +129,7 @@ class OfferController extends ControllerBase
         $offer->expires = $expires;
         $offer->anonymous = ($data['anonymous'] == 'on' ? 1 : 0);
         
+
         try {
             if ($offer->save() == false) {
                 foreach ($offer->getMessages() as $message) {
@@ -171,8 +172,7 @@ class OfferController extends ControllerBase
         $comment->user_id = $this->session->get('auth')['id'];
         $comment->anonymous = (empty($data['anonymous']) && $data['anonymous'] == 'on' ? 1 : 0);
         $comment->offer_id = (int)$id;
-
-
+        $comment->timestamp = date( "Y-m-d H:i:s", time());
         try {
             if ($comment->save() == false) {
                 foreach ($comment->getMessages() as $message) {
