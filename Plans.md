@@ -4,7 +4,7 @@ Author: Scott B Huson (2021.5) <br/>
 Updated: May 15th, 2018 <br/>
 Plans for V0.1 Completed by September 2018 for community release<br/>
 <br/>
-Table of Contents:<br/>
+<u>Table of Contents:</u><br/>
 Abstract:	1<br/>
 Problem Statement:	1<br/>
 The System:	2<br/>
@@ -14,28 +14,32 @@ Long Term Plan:	4<br/>
 Expected Growth (Updated):	5<br/>
 System Design:	7<br/></b>
 
-Abstract:<br/>
+<u>Abstract:</u><br/>
 <p>The goal of this project is to enable the transmission and liquidity of non-liquid storage of value, in the closed community of a college campus. Through the construction of a platform of exchange and fully unregulated unit of value, it will be studied how a virtual currency can artificially effect traditionally non-transferrable goods. Additionally, the optimal methods of platform introduction, community adoption, and rate of growth will be studied to aid in the development of more robust, flexible, and accessible solutions. Since the end goal of the project is only the implementation of ideas only studied theoretically in a classroom setting, any monetary gains made by the platform will be distributed to its users proportionally based on their current share of the currency.</p> <br/>
 <br/>
-Problem Statement:<br/>
-College campuses are highly competitive markets with active peer to peer marketplaces. College campuses also traditionally have a low supply of fiat due to the fact that many college students are cheap or on financial aid. As a result of these factors and others, such as student dorm movement and an excess of student time, in many college campuses there is a high potential market activity. While student populations can seem diverse in thought and activity, as a population their purchasing habits are very similar. It is common for student led organizations or firms to take advantage of these semi-homogeneous student populations to target them with promotions and other sales tactics.  <br/>
+<u>Problem Statement:</u><br/>
+<p>College campuses are highly competitive markets with active peer to peer marketplaces. College campuses also traditionally have a low supply of fiat due to the fact that many college students are cheap or on financial aid. As a result of these factors and others, such as student dorm movement and an excess of student time, in many college campuses there is a high potential market activity. While student populations can seem diverse in thought and activity, as a population their purchasing habits are very similar. It is common for student led organizations or firms to take advantage of these semi-homogeneous student populations to target them with promotions and other sales tactics.</p>  <br/>
 
-At Brown University, there are several dining policies that are inconvenient for its students. The most prominent of these policies is the unequal cost and value of meal plans. Brown students can choose one of several meal plans to be able eat in university dining halls. Each of the plans has its downsides. With the most popular plan, a student gets 20 passes (swipes) to an all you can eat style dining area and can use those passes in a different form (points) to buy at other dining halls that don’t take swipes as a form of payment. Every week the old swipes expire and new ones are given. Under the second most popular plan, a student receives half their semester worth of food in swipes and half in points, and their balance is held for the entire semester. While these are the two most prominent plans, every smaller plan gives less value for the amount of money paid. There are several clear problems with this system. Firstly, students on the first meal plan cannot save up swipes, and also when using those swipes as points they only get 75% of the original value. Secondly, students on the other meal plans do not get as much value overall as the students on the first plan. Neither of the plans allows students to hold meal value in long term situations. <br/><br/>
-System:<br/>
-This system was designed initially to sidestep the problems with the meal system almost entirely, but has been extended to other campus ‘assigned’ assets like paw prints and bear bucks. The system is designed to allow students to post and place offers on the sale of meal swipes, points, and guest passes. It will allow students to buy things in the place of other students (the student buying for another student will have to be present, to abide by dining policy), and in return, get virtual credit for that transaction. This virtual credit can be saved indefinitely, potentially until a student is off meal plan or would like to make a transaction for another good. The goal of the system is to eliminate the loss of value at the end of the semester for students that have an excess of points, and to help students that have no credit to eat without having to spend any real money.<br/><br/>
-Legal:<br/>
+<p>At Brown University, there are several dining policies that are inconvenient for its students. The most prominent of these policies is the unequal cost and value of meal plans. Brown students can choose one of several meal plans to be able eat in university dining halls. Each of the plans has its downsides. With the most popular plan, a student gets 20 passes (swipes) to an all you can eat style dining area and can use those passes in a different form (points) to buy at other dining halls that don’t take swipes as a form of payment. Every week the old swipes expire and new ones are given. Under the second most popular plan, a student receives half their semester worth of food in swipes and half in points, and their balance is held for the entire semester. While these are the two most prominent plans, every smaller plan gives less value for the amount of money paid. There are several clear problems with this system. Firstly, students on the first meal plan cannot save up swipes, and also when using those swipes as points they only get 75% of the original value. Secondly, students on the other meal plans do not get as much value overall as the students on the first plan. Neither of the plans allows students to hold meal value in long term situations.</p> <br/><br/>
+<u>System:</u><br/>
+<p>This system was designed initially to sidestep the problems with the meal system almost entirely, but has been extended to other campus ‘assigned’ assets like paw prints and bear bucks. The system is designed to allow students to post and place offers on the sale of meal swipes, points, and guest passes. It will allow students to buy things in the place of other students (the student buying for another student will have to be present, to abide by dining policy), and in return, get virtual credit for that transaction. This virtual credit can be saved indefinitely, potentially until a student is off meal plan or would like to make a transaction for another good. The goal of the system is to eliminate the loss of value at the end of the semester for students that have an excess of points, and to help students that have no credit to eat without having to spend any real money.</p><br/><br/>
+<u>Legal:</u><br/>
 The creators and anyone involved in the construction and implementation of this project are not liable for anything done through the use of the platform nor can be held accountable for activities done explicitly through the use of the platform.<br/>
 The creators and managers of the project are not liable for any loss of funds, or any other unit of value, due to errors in the construction of the platform. <br/>
 The use of the platform is not restricted to any population or group except those within the Brown community.<br/>
 The use of the platform is meant to be purely beneficial to its user base and the creators and managers do not and never will directly benefit from the use of the platform by other users besides through the personal use of the platform.<br/><br/>
-Outline of the platform:<br/>
+
+<u>Outline of the platform:</u><br/>
 Enables the unregulated private transfer of units from person to person (represented as accounts).<br/>
 Encourages the creation of new users and incentivizes both parties involved with a new user purchase.<br/>
 Enables the facilitation of transactions between unknown and unrelated parties.<br/>
 Enables access to the platform with simple user verification and security in order to maximize community outreach and access. <br/>
 Stores an anonymous ledger of transactions and their parties. <br/>
 Facilitates the use of outside applications’ access to that database.<br/><br/>
-Default platform specifics:<br/>
+
+<i>Warning: Everything below this line has not been styled. Proceed at your own risk!</i>
+
+<u>Default platform specifics:</u><br/>
 Semi-locally hosted web server with database (Move to Google Cloud Platform with www.brownbytes.org domain)<br/>
 Web platform with required user authentication<br/>
 Secure network protocols (HTTPS)<br/><br/>
@@ -73,12 +77,12 @@ IDK?<br/><br/>
 
 <br/>
 <br/>
-Please excuse the shitty styling, this was initially built on a word document.
+Please excuse the bad styling, this was initially built on a word document.
 <br/>
 <br/>
 
-Expected Growth (Updated):<br/>
-	Metcalfe’s law states that the effect of a network is proportional to the square of the number of users connected by that network (n^2). This law was initially meant for telecommunication networks, whos user base was connected through the use of mobile devices (telephones). By associating this law to internet communities based on an exchange of value, it is possible to approximate the value of a system as a whole to being the effect of that system on the community. Empirical data (facebook) has indicated that this n^2 increase in value per user is actually only true for smaller values of n, whereas n*log(n) is more accurate for larger values of n. While is it clear that this research is logical, it is unclear whether the cutoff or transition between these two models is small enough to be included in a population of a small college campus. Data collected in the implementation of this platform will be used to make this determination. 
+<u>Expected Growth (Updated):</u><br/>
+	<p>Metcalfe’s law states that the effect of a network is proportional to the square of the number of users connected by that network (n^2). This law was initially meant for telecommunication networks, whos user base was connected through the use of mobile devices (telephones). By associating this law to internet communities based on an exchange of value, it is possible to approximate the value of a system as a whole to being the effect of that system on the community. Empirical data (facebook) has indicated that this n^2 increase in value per user is actually only true for smaller values of n, whereas n*log(n) is more accurate for larger values of n. While is it clear that this research is logical, it is unclear whether the cutoff or transition between these two models is small enough to be included in a population of a small college campus. Data collected in the implementation of this platform will be used to make this determination. 
 	If the value of a community increases with the growth of that community, it is logical that that growth will accelerate as the incentive to join increases. In the earlier stages of growth, the natural incentive (from the use of the platform) will logically be low due to the few amount of users, and therefore it may be beneficial to include extra incentive to join the platform. As the community progresses this incentive should be lowered because it is no longer necessary. In this experiment however, the only form of currency creation is from new users, and therefore the initial incentive will not be lowered. 
 	Green is new user benefit to sign up.
 	Blue is the estimated initial minting to incentivize new users.
@@ -118,7 +122,7 @@ Get transactions
 Get User information
 Transaction Actions
 Mobile:
-IDK
+
 June 13, 2018:
 	Decided to use Phalcon PHP framework to make web version design easier and more scalable. Still going to write the API in native PHP. Added frontend and backend documentation if you are interested in that kind of thing and can handle a bit of shitty code writing and PHP. I can always just release the github version.
 
