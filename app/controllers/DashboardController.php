@@ -16,7 +16,7 @@ class DashboardController extends ControllerBase
 
         $table_offers = array();
         foreach($offers as $offer) {
-            $offer->expiration = $this->getRemaining($offer->expires, time());
+            $offer->expiration = $market->getRemaining($offer->expires, time());
             $offer->location = Locations::findFirstById($offer->location)->title;
             $offer->offer_id = $offer->getId();
             $offer->activity = $offer->getActivity();
@@ -62,30 +62,5 @@ class DashboardController extends ControllerBase
 
 
         $this->view->offers = $table_offers;
-    }
-    /**
-     * Gets remaining time until a date
-     *
-     */
-    public function getRemaining($time, $curr_time) {
-        $difference = $time - $curr_time;
-        //seconds
-        if($difference <= 60) {
-            return "Less than a minute";
-        } 
-        //minutes
-        $difference = $difference/60;
-        if (($difference) <= 60) { 
-            return (int)$difference." minutes";
-        }
-        //hours
-        $difference = $difference/60; 
-        if (($difference) <= 24) { 
-            return (int)$difference." hours";
-        }
-
-        $difference = $difference/24; 
-        
-        return (int)$difference." days";
     }
 }

@@ -29,7 +29,7 @@ class Market extends Component {
             $location = Locations::findFirstById($offer->location);
             $offer->location_name = $location->title;
 
-            $offer->expiration = round(($offer->expires - time()) / 3600, 2);
+            $offer->expiration = $this->getRemaining($offer->expires, time());
 
             $return[] = $offer;
         }
@@ -115,10 +115,10 @@ class Market extends Component {
         foreach ($result as $tran) {
             $return[] = $tran;
             var_dump($return);
-            die();
+            //die();
         }
         
-        die();
+        //die();
         return $tran;
     }
 
@@ -161,5 +161,30 @@ class Market extends Component {
     public function getOffers($params=array()) {
         $offers = Offer::find(array_merge($params, array('order' => 'timestamp DESC')));
         return $offers;
+    }
+    /**
+     * Gets remaining time until a date
+     *
+     */
+    public function getRemaining($time, $curr_time) {
+        $difference = $time - $curr_time;
+        //seconds
+        if($difference <= 60) {
+            return "Less than a minute";
+        } 
+        //minutes
+        $difference = $difference/60;
+        if (($difference) <= 60) { 
+            return (int)$difference." minutes";
+        }
+        //hours
+        $difference = $difference/60; 
+        if (($difference) <= 24) { 
+            return (int)$difference." hours";
+        }
+
+        $difference = $difference/24; 
+        
+        return (int)$difference." days";
     }
 }

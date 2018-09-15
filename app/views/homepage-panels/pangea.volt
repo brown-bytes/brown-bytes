@@ -1,9 +1,8 @@
-<section id="authenticate">
-    <div class="container">
-        <div class="row">
-          	<div class="col-lg-8 mx-auto text-center">
-	            <h2>Brown Bytes is coming to Pangea</h2>
-          	</div>
-        </div>
+
+<div class="container">
+    <div class="row">
+      	<div class="col-lg-12 mx-auto text-center">
+            <h2>What would you do for a swipe? Brown Bytes marketplace coming soon...</h2>
+      	</div>
     </div>
-</section>
+</div>
