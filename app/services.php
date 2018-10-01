@@ -12,7 +12,6 @@ use Phalcon\Events\Manager as EventsManager;
 
 class Services extends \Base\Services
 {
-
     /**
      * We register the events manager
      */
@@ -125,11 +124,13 @@ class Services extends \Base\Services
      */
     protected function initElements()
     {
-        return new Elements();
+	require_once(APP_PATH . 'app/library/elements.php');    
+	return new Elements();
     }
     protected function initMarket() {
         
-        return new Market();
+	return new Market();
     }
 
 }
+?>
