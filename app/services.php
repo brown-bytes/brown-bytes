@@ -28,10 +28,10 @@ class Services extends \Base\Services
          * Handle exceptions and not-found exceptions using NotFoundPlugin
          */
         $eventsManager->attach('dispatch:beforeException', new NotFoundPlugin);
-
         $dispatcher = new Dispatcher;
         $dispatcher->setEventsManager($eventsManager);
-
+        $actionName = $dispatcher->getActionName() . ' Action<br/>';
+        
         return $dispatcher;
     }
 
@@ -40,8 +40,8 @@ class Services extends \Base\Services
      */
     protected function initUrl()
     {
-        $url = new UrlProvider();
-        $url->setBaseUri($this->get('config')->application->baseUri);
+	    $url = new UrlProvider();
+	    $url->setBaseUri($this->get('config')->application->baseUri);
         return $url;
     }
 
@@ -102,7 +102,7 @@ class Services extends \Base\Services
     protected function initSession()
     {
         $session = new SessionAdapter();
-        $session->start();
+	    $session->start();
         return $session;
     }
 
@@ -124,11 +124,12 @@ class Services extends \Base\Services
      */
     protected function initElements()
     {
-	require_once(APP_PATH . 'app/library/elements.php');    
+	require_once(APP_PATH . 'app/library/elements.php');
+	//echo 'intiated elements';
 	return new Elements();
     }
     protected function initMarket() {
-        
+        require_once(APP_PATH . 'app/library/market.php');
 	return new Market();
     }
 

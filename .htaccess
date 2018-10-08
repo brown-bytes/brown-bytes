@@ -1,7 +1,6 @@
-
-
+Options -MultiViews
 <IfModule mod_rewrite.c>
-	RewriteEngine on
-	RewriteRule ^$ html/ [L]
-	RewriteRule ((?s).*) html/$1 [L]
+    RewriteEngine On
+    RewriteRule ^$ html/     [L]
+    RewriteRule (.*) html/$1 [L]
 </IfModule>

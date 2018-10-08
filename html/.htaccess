@@ -1,7 +1,13 @@
 AddDefaultCharset UTF-8
+Options -MultiViews
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
 
+    # DocumentRoot
+    RewriteRule ^(.*)$ index.php?_url=/$1 [QSA,L]
 
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ index.php [L,QSA]
+    # VirtualDocumentRoot
+    # RewriteRule ^(.*)$ /index.php?_url=/$1 [QSA,L]
+</IfModule>

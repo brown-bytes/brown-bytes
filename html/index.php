@@ -1,7 +1,6 @@
 <?php
 //phpinfo();
-
-
+//die();
 ini_set('display_errors', 1);
 error_reporting(E_ALL|E_STRICT);
 
@@ -10,7 +9,6 @@ use Phalcon\Config\Adapter\Ini as ConfigIni;
 
 try {
     define('APP_PATH', realpath('..') . '/');
-    //\Phalcon\Mvc\Model::setup(['notNullValidations' => false]);
 
     /**
      * Read the configuration
@@ -25,17 +23,8 @@ try {
      */
     require APP_PATH . 'app/library/base/services.php';
     require APP_PATH . 'app/config/loader.php';
-    //$services = new Services($config);
+
     $application = new Application(new Services($config));
-    //echo 'app<br/>';
-    //var_dump($application);
-    //$response = $services->get('response');
-    //var_dump($response);
-    //echo $application->handle('/')->getContent();
-    //try {
-	//	throw new \Exception('foo');
-    //} catch (\Exception $e) {
-//	$application = new Application($services);
     echo $application->handle(!empty($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] :null)->getContent();
 //	$services->remove('response');
   //  }
