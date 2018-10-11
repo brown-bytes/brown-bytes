@@ -124,14 +124,18 @@ class Services extends \Base\Services
      */
     protected function initElements()
     {
-	require_once(APP_PATH . 'app/library/elements.php');
-	//echo 'intiated elements';
-	return new Elements();
+	    require_once(APP_PATH . 'app/library/elements.php');
+	    return new Elements();
     }
     protected function initMarket() {
         require_once(APP_PATH . 'app/library/market.php');
-	return new Market();
+	    return new Market();
     }
+    protected function initMailer() {
+        require_once(APP_PATH . 'app/library/mailer.php');
+        return new Mailer();
+    }
+
 
 }
 ?>

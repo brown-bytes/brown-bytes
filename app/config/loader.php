@@ -17,7 +17,8 @@ $loader->registerClasses([
     'Services' => APP_PATH . 'app/services.php',
     'Validators' => APP_PATH . 'app/Validators.php',
     'Elements' => APP_PATH . 'app/library/elements.php',
-    'Market' => APP_PATH . 'app/library/market.php'
+    'Market' => APP_PATH . 'app/library/market.php',
+    'Mailer' => APP_PATH . 'app/library/mailer.php'
 ]);
 $loader->register();
 
