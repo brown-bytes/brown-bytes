@@ -30,7 +30,7 @@ class Mailer extends Component {
             ]
         ];
         $this->response = $mj->post(Resources::$Email, ['body' => $body]);
-        $this->success = $response->success();
+        $this->success = $this->response->success();
     }
     public function getResponse() {
         return $this->response;

@@ -15,7 +15,7 @@ $loader->registerDirs([
 
 $loader->registerClasses([
     'Services' => APP_PATH . 'app/services.php',
-    'Validators' => APP_PATH . 'app/Validators.php',
+    'Validators' => APP_PATH . 'app/validators.php',
     'Elements' => APP_PATH . 'app/library/elements.php',
     'Market' => APP_PATH . 'app/library/market.php',
     'Mailer' => APP_PATH . 'app/library/mailer.php'

@@ -7,35 +7,34 @@ use Phalcon\Mvc\Model\Validator\Uniqueness as UniquenessValidator;
 class Users extends Model
 {   
     protected $id;
-
-    protected $name;
-
-    protected $admin;
+    public $name;
+    public $email;
+    public $admin;
+    public $status;
+    public $created_on;
+    public $last_login;
+    public $verify;
+    public $api_private;
+    private $password;
 
 
     public function initialize()
     {
         $this->setSource('cms__users');
+        $timestamp = new Phalcon\Db\RawValue('now()');
+        $this->created_on = $timestamp;
+        $this->last_login = $timestamp;
+        $this->timestamp = $timestamp;
+        $this->api_private = md5(uniqid(rand(), true));
+        $this->status = 0;
+        $this->admin = 0;
     }
 
     public function isAdmin() {
         return $this->admin;
     }
 
-    public function validation()
-    {   
-
-        $this->validate(new EmailValidator(array(
-            'field' => 'email'
-        )));
-        $this->validate(new UniquenessValidator(array(
-            'field' => 'email',
-            'message' => 'Sorry, The email was registered by another user'
-        )));
-        if ($this->validationHasFailed() == true) {
-            return false;
-        }
-    }
+    
 
     public function getName() {
         return $this->name;
@@ -43,5 +42,9 @@ class Users extends Model
 
     public function getId() {
         return $this->id;
+    }
+    public function setPassword($password) {
+        $this->password = sha1($password);
+        return true;
     }
 }

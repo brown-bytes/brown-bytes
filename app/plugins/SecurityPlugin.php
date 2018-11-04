@@ -66,7 +66,7 @@ class SecurityPlugin extends Plugin
 				'marketplace'=> array('index'),
 				'offer'      => array('index', 'comment'),
 				'errors'     => array('show401', 'show404', 'show500'),
-				'session'    => array('index', 'register', 'start', 'end'),
+				'session'    => array('index', 'register', 'start', 'end', 'verify'),
 				'contact'    => array('index', 'send'),
 				'team'       => array('index', 'apply')
 			);

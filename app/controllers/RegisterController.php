@@ -18,7 +18,6 @@ class RegisterController extends ControllerBase
      */
     public function indexAction()
     {
-        //$this->sendVerify('1234', 'Scott', 'scott@huson.com' );
         $form = new RegisterForm;
 
         if ($this->request->isPost()) {
@@ -32,34 +31,38 @@ class RegisterController extends ControllerBase
                 $this->flash->error('Passwords are different');
                 return false;
             }
-
+            
             $user = new Users();
-            $user->password = sha1($password);
+            $user->setPassword($password);
             $user->name = $name;
             $user->email = $email;
-            $user->created_on = new Phalcon\Db\RawValue('now()');
-            
-            //setup for backend user preferences
-            $user->status = 0;
-            $user->last_login = new Phalcon\Db\RawValue('now()');
 
             //uniqid() for verification
             $verify = uniqid();
             $user->verify = $verify;
-            $user->admin = 0;
-            $user->api_private = md5(uniqid(rand(), true));
-            $user->timestamp = new Phalcon\Db\RawValue('now()');
+            
+            require(APP_PATH . 'app/validators.php');
 
-            if ($user->save() == false) {
-                foreach ($user->getMessages() as $message) {
-                    $this->flash->error((string) $message);
+            $validator = new RegisterValidator();
+            $messages = $validator->validate($user);
+            if (count($messages)) {
+                foreach ($messages as $messagy) {
+                    $this->flash->error((string) $messagy);
+                }  
+            } else {  
+                if ($user->save() == false) {
+                    foreach ($user->getMessages() as $message) {
+                        $this->flash->error((string) $message);
+                    }
+                } else {
+                    $this->tag->setDefault('email', 'bru.no@brown.edu');
+                    $this->tag->setDefault('password', '');
+                    $this->sendVerify($verify, $name, $email);
+                    $this->flash->success('Thank you for signing up, a verification link has been emailed to you.');
+                    $notice = new Mailer('scott@huson.com', 'Someone Registered', 'Name: '.$user->name.'<br/>Email: '.$user->email.'<br/>END.');
+                    $email = new Mailer($user->email, 'Verify Your Email', 'Hi '.$user->name.',<br/><br/>Thank you for registering on Brown Bytes. We are happy to have you join the team.<br/>To complete verification, click the link below.<br/>http://brownbytes.org/session/verify/'.$user->verify.'<br/><br/>Best,<br/>The Brown Bytes Team');
+                    return $this->forward('session/index');
                 }
-            } else {
-                $this->tag->setDefault('email', 'bru.no@brown.edu');
-                $this->tag->setDefault('password', '');
-                $this->sendVerify($verify, $name, $email);
-                $this->flash->success('Thank you for signing up, a verification link has been emailed to you.');
-                return $this->forward('session/index');
             }
         }
 

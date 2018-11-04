@@ -1,6 +1,6 @@
 <?php
-//phpinfo();
-//die();
+
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL|E_STRICT);
 
@@ -9,7 +9,7 @@ use Phalcon\Config\Adapter\Ini as ConfigIni;
 
 try {
     define('APP_PATH', realpath('..') . '/');
-
+    include(APP_PATH . 'vendor/autoload.php');
     /**
      * Read the configuration
      */

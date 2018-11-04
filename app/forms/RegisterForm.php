@@ -4,6 +4,7 @@ use Phalcon\Forms\Form;
 use Phalcon\Forms\Element\Text;
 use Phalcon\Forms\Element\Password;
 use Phalcon\Validation\Validator\PresenceOf;
+use Phalcon\Validation\Validator\Callback;
 use Phalcon\Validation\Validator\Email;
 
 class RegisterForm extends Form
@@ -32,7 +33,16 @@ class RegisterForm extends Form
             )),
             new Email(array(
                 'message' => 'E-mail is not valid'
-            ))
+            )),
+            new Callback(
+                [
+                    'callback' => function($data) {
+                        return (strpos($data, '@brown.edu') !== false);
+                        //checking to see if the email is actually from Brown
+                    },
+                    'message' => 'You must use your official Brown email to sign up for Brown Bytes.'
+                ]
+            )
         ));
         $this->add($email);
 

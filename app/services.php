@@ -135,6 +135,10 @@ class Services extends \Base\Services
         require_once(APP_PATH . 'app/library/mailer.php');
         return new Mailer();
     }
+    protected function initRegisterValidator() {
+        require_once(APP_PATH . 'app/validators.php');
+        return new RegisterValidator();
+    }
 
 
 }
