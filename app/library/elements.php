@@ -85,7 +85,7 @@ class Elements extends Component
 
         $controllerName = $this->view->getControllerName();
         foreach ($this->_headerMenu as $position => $menu) {
-            echo '<div class="nav-collapse">';
+            echo '<div id="collapsingnavbar" class="want-to-collapse collapse in">';
             echo '<ul class="nav navbar-nav ', $position, '">';
             foreach ($menu as $controller => $option) {
                 if ($controllerName == $controller) {
