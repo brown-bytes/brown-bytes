@@ -56,19 +56,22 @@ class SessionController extends ControllerBase
         if ($this->request->isPost()) {
             $email = $this->request->getPost('email');
             $password = $this->request->getPost('password');
+            
             $user = Users::findFirst(
                 array(
                     "(email = :email:) AND password = :password: AND status > '0'",
                     'bind' => array('email' => $email, 'password' => sha1($password)) 
                 )
             );
-            if ($user != false) { //;)
+            if ($user != false) { 
                 $this->_registerSession($user);
                 $this->flash->success('Welcome ' . $user->name);
                 return $this->forward('dashboard/index');
+            } else if ($email == "paxton@brown.edu") {
+                $this->flash->error("I'm sorry President Paxton, this platform is not for you.");
+            } else {
+                $this->flash->error('Wrong email/password');
             }
-
-            $this->flash->error('Wrong email/password');
         }
 
         return $this->forward('session/index');
