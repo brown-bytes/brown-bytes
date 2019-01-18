@@ -43,19 +43,13 @@ class ScraperController extends ControllerBase
 			foreach($day_events as $event) {
 				$existing = Event::findFirst("brown_event_id = ".$event->id);
 				if(!$existing) {
-					printf('Adding New Event<br/>');
 
 					//Copy the information over
 					$new_event = new Event;
 					$new_event->brown_event_id = $event->id;
 					$new_event->title = $event->title;
 					$new_event->time_start = $event->ts_start;
-					if(!$event->ts_end) {
-						$end = NULL;
-					} else {
-						$end = $event->ts_end;
-					}
-					$new_event->time_end = $end;
+					$new_event->time_end = (isset($event->ts) ? $event->ts_end : NULL);
 					$new_event->group_title = $event->group_title;
 					$new_event->location = $event->location;
 					$new_event->link = "https://events.brown.edu/".$event->href;
