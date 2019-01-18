@@ -24,8 +24,8 @@ class Elements extends Component
                 'caption' => 'About',
                 'action' => 'index'
             ),
-            'contact' => array(
-                'caption' => 'Contact',
+            'calendar' => array(
+                'caption' => 'Calendar',
                 'action' => 'index'
             ),
         ),
@@ -137,22 +137,22 @@ class Elements extends Component
             'appear' => 0,
             'path' => 'homepage-panels/authenticate'
         ),
-        'community' => array(
+        /*'community' => array(
             'appear' => 0,
             'path' => 'homepage-panels/community'
-        ),
-        'user' => array(
+        ),*/
+        /*'user' => array(
             'appear' => 1,
             'path' => 'homepage-panels/user'
-        ),
+        ),*/
         'alternates' => array(
             'appear' => 2,
             'path' => 'homepage-panels/alternates'
         ),
-        'pangea' => array(
+        /*'pangea' => array(
             'appear' => 2,
             'path' => 'homepage-panels/pangea'
-        ),
+        ),*/
         'calendar' => array(
             'appear' => 2,
             'path' => 'homepage-panels/brownbites'

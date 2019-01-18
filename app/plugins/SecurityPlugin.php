@@ -30,7 +30,7 @@ class SecurityPlugin extends Plugin
 			$acl->setDefaultAction(Acl::DENY);
 
 			// Register roles
-			$roles = [
+			$roles = [ 
 				'users'  => new Role(
 					'Users',
 					'Member privileges, granted after sign in.'
@@ -50,7 +50,9 @@ class SecurityPlugin extends Plugin
 				'marketplace'    => array('index'),
 				'transaction'    => array('index', 'new', 'info', 'create', 'delete'),
 				'offer' 		 => array('index', 'new', 'edit', 'edited', 'create', 'deactivate', 'activate', 'comment'),
-				'dashboard'    	 => array('index', 'profile', 'privacy', 'offers')
+				'dashboard'    	 => array('index', 'profile', 'privacy', 'offers'),
+				'admin'          => array('index'),
+				'scraper'          => array('index')
 			);
 			foreach ($privateResources as $resource => $actions) {
 				$acl->addResource(new Resource($resource), $actions);
@@ -68,6 +70,7 @@ class SecurityPlugin extends Plugin
 				'errors'     => array('show401', 'show404', 'show500'),
 				'session'    => array('index', 'register', 'start', 'end', 'verify'),
 				'contact'    => array('index', 'send'),
+				'calendar'   => array('index'),
 				'team'       => array('index', 'apply')
 			);
 			foreach ($publicResources as $resource => $actions) {
@@ -121,8 +124,6 @@ class SecurityPlugin extends Plugin
 
 	
 		if (!$acl->isResource($controller)) {
-			
-			
 			$dispatcher->forward([
 				'controller' => 'errors',
 				'action'     => 'show404'
