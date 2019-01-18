@@ -4,4 +4,5 @@
 
 <div><b>Join our team by contacting scott_huson@brown.edu. We would love to have your help in making Brown a better place!
 </b></div>
+{{link_to("contact/index", "Contact", 'class': "btn btn-primary btn-md text-center") }}
 

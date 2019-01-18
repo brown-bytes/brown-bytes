@@ -1,7 +1,7 @@
 
 <div class="container">
     <div class="row">
-      	<div class="col-lg-8 mx-auto text-center">
+      	<div class="col-lg-12 mx-auto text-center">
             <h2>Log In or Sign Up</h2>
            	<h3>To make announcements and much more, we need to know you actually go to Brown<h3>
             <div class="row">

@@ -31,11 +31,17 @@
 	        </div>
 		{% else %}
 			<div class="col-lg-6 mx-auto">
-	            <h2>Not much is going on...Start something.</h2>
+	            <h2>Looks like there aren't any offers, create your own offer or check out the calendar for free food events.</h2>
 	        </div>
-			<div class="col-lg-2 mx-auto" style="display:inline-block;">
+			<div class="col-lg-2 mx-auto" style="display:inline-block;" align="right">
 	            {{link_to("offer/new", "New Offer", 'class': "btn btn-primary btn-success btn-lg text-center") }}
 	        </div>
+	        <div class="col-lg-2 mx-auto" style="display:inline-block;" align="left">
+	        	{{link_to("calendar/index", "Calendar", 'class': "btn btn-primary btn-success btn-lg text-center") }}
+	        </div>
+	       	<div class="col-lg-2 mx-auto" style="display:inline-block;">
+	       	</div>
+
 		{% endif %}
     </div>
 </div>
