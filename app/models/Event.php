@@ -12,6 +12,8 @@ class Event extends Model {
 
     public $brown_event_id;
 
+    public $user_id;
+
     public $title;
 
     public $time_start;
