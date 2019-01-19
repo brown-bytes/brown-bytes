@@ -2,7 +2,7 @@
 Below is a list of events collected from Events@Brown and handpicked by cool students. Make sure to verify the type of food available. 
 <h3>Actions</h3>
 {% if login %}
-	{{link_to("event/new", "Create Event", "class": "btn btn-primary btn-success")}}
+	{{link_to("calendar/new", "Create Event", "class": "btn btn-primary btn-success")}}
 	{% if admin %}
 		{{link_to("scraper", "Scrape", "class": "btn btn-primary btn-success")}}
 	{% endif %}

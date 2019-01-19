@@ -26,7 +26,7 @@ class CalendarController extends ControllerBase
     	$offers = $market->getCurrentOffers();
 
     	$this->view->offers = $offers;
-        $date_query_string = "date_int > ".$this->getDateString();
+        $date_query_string = "date_int >= ".$this->getDateString();
         //Get all the calendar events:
         $events = Event::find( 
             [
@@ -50,23 +50,41 @@ class CalendarController extends ControllerBase
 
         $form = new EventForm(new Event);
         $event = new Event();
-        
-        $data = $this->request->getPost();
-        if (!$form->isValid($data, $event)) {
-            foreach ($form->getMessages() as $message) {
-                $this->flash->error($message);
+        try {
+            $data = $this->request->getPost();
+            if (!$form->isValid($data, $event)) {
+                foreach ($form->getMessages() as $message) {
+                    $this->flash->error($message);
+                }
+                return $this->forward('calendar/new');
             }
-            return $this->forward('calendar/new');
+        } catch (Exception $e) {
+            printf("The server has encountered an error:<br/>".$e);
+            die();
         }
-
 
         //Set all the fields here:
         $event->date_int = substr($event->date, 0, 4).substr($event->date, 5, 2).substr($event->date, 8, 2); //This is the date string for comparison
-        //$event->time_start = strtotime($event->date_int.'T'.$event->)
+        $event->time_start = strtotime($event->date_int.'T'.$event->time_number) + 18000;
+        if($event->time_start < time()) {
+            $this->flash->error('Please only use future dates.');
+            return $this->forward('calendar/new');
+        }
+        $event->time_end = strtotime($event->date_int.'T'.$event->time_number_end) + 18000;
+        if($event->time_start > $event->time_end) {
+            $this->flash->error('End time must be after start.');
+            return $this->forward('calendar/new');
+        }
+        //get the brown event id:
+        $pos = strrpos($event->link, 'event_id/');
+        if($pos) {
+            $event->brown_event_id = substr($event->link, $pos + 9);
+        } else {
+            $event->brown_event_id = 0;
+        }
         $event->user_id = $this->session->get('auth')['id'];
-        // $event->time_start = ;
-        // $event->time_end = ;
-        die();
+
+        //Try to save it
         try {
             if ($event->save() == false) {
                 foreach ($event->getMessages() as $message) {

@@ -7,8 +7,7 @@ use Phalcon\Forms\Element\Check;
 use Phalcon\Forms\Element\Select;
 use Phalcon\Forms\Element\Date as DateElement;
 
-//require_once('Phalcon\Validation\Validator\Date');
-//use Phalcon\Validation\Validator\Date as DateValidator;
+use Phalcon\Validation\Validator\Date as DateValidator;
 use Phalcon\Validation\Validator\PresenceOf;
 use \Phalcon\Validation\Validator\Callback;
 use Phalcon\Validation\Validator\Between;
@@ -18,7 +17,6 @@ use Phalcon\Validation\Validator\Url;
 
 class EventForm extends Form
 {
-
     public function initialize(Event $event, $options = null)
     {
         // title
@@ -70,35 +68,47 @@ class EventForm extends Form
         // date and time
         $date_el = new DateElement('date');
         $date_el->setLabel('Event Date:');
-        //add this back in
-        /*$date_el->addValidators(array(
+        $date_el->addValidators(array(
             new DateValidator(array(
                 'message' => 'Not a valid date.'
             ))
-        ));*/
+        ));
         $this->add($date_el);
 
         $time_number = new Text('time_number');
-        $time_number->setLabel('Start Time (format 8:00):');
+        $time_number->setLabel('Start Time (please use 24-hour clock ex: 8:00:00 AM -> 8:00:00):');
         $time_number->setFilters(array('striptags', 'string'));
-        $link->addValidators(array(
+        $time_number->addValidators(array(
             new PresenceOf(array(
-                'message' => 'Please enter a time.'
+                'message' => 'Please enter a start time.'
             )), 
             new Callback(
                 [
                     'callback' => function($data) {
-                        printf(strtotime($data));
-                        return (strtotime($data) == false);
+                        return (!!strtotime($data->time_number));
                     },
-                    'message'  => "Sorry the parser couldn't recognize your format."
+                    'message'  => "Sorry the parser couldn't recognize your start time format."
                 ]
             )
         ));
+        $this->add($time_number);
 
-
-
-
-
+        $time_number_end = new Text('time_number_end');
+        $time_number_end->setLabel('End Time (please use 24-hour clock ex: 9:00:00 PM -> 21:00:00):');
+        $time_number_end->setFilters(array('striptags', 'string'));
+        $time_number_end->addValidators(array(
+            new PresenceOf(array(
+                'message' => 'Please enter an end time.'
+            )), 
+            new Callback(
+                [
+                    'callback' => function($data) {
+                        return (!!strtotime($data->time_number));
+                    },
+                    'message'  => "Sorry the parser couldn't recognize your end time format."
+                ]
+            )
+        ));
+        $this->add($time_number_end);
     }
 }
