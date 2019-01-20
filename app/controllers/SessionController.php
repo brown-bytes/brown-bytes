@@ -58,12 +58,24 @@ class SessionController extends ControllerBase
             $password = $this->request->getPost('password');
             
             $user = Users::findFirst(
-                array(
-                    "(email = :email:) AND password = :password: AND status > '0'",
-                    'bind' => array('email' => $email, 'password' => sha1($password)) 
+                array( //emails are unique so its fine
+                    "(email = :email:)",
+                    'bind' => array('email' => $email) 
                 )
             );
-            if ($user != false) { 
+            if(!$user) { //If there are no emails in the database with this name
+                $this->flash->error("There is no account registered to that email.");
+                $this->flash->notice("Due to recent changes to password encryption (making it more secure), were asking all users with accounts to re-register.
+                    Sorry for the inconvinience.");
+                return $this->forward('session/index');
+            } else if($user->status < 1) {
+                $this->flash->error("Please verify your account by clicking the link in the email that was sent to you.");
+                return $this->forward('session/index');
+            }
+            $access = $user->verifyPassword($password);
+
+
+            if ($access) { 
                 $this->_registerSession($user);
                 $this->flash->success('Welcome ' . $user->name);
                 return $this->forward('dashboard/index');

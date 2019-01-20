@@ -2,6 +2,8 @@
 {% if login %}
 	<b>You are currently logged in as <u>{{user}}</u>.</b><br/><br/>
 	{{link_to("offer/new", "New Offer", "class": "btn btn-primary btn-success")}}
+    {{link_to("dashboard/offers", "My Offers", "class": "btn btn-primary btn-success")}}
+
     <br/><br/>
 {% else %}
 	<b>You are not logged in. Log in to create and manage offers. Maybe some day you'll be rewarded for your generosity. ;)</b>

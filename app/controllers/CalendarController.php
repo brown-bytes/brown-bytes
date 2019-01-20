@@ -8,7 +8,7 @@ class CalendarController extends ControllerBase
     public function initialize() {
         $this->tag->setTitle('Calendar');
         parent::initialize();
-
+        $this->view->admin = false;
         if ($this->session->get('auth')) {
         	$this->view->login = true;
         	$this->view->user = $this->session->get('auth')['data']['name'];

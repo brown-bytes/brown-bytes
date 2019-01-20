@@ -1,5 +1,8 @@
 <h2>My Offers</h2>
 
+<div class="text-left" style="margin-bottom:10px;">
+    {{link_to("offer/new", "New Offer", "class": "btn btn-primary btn-success")}}
+</div>
 <table class="table table-bordered table-striped">
     <thead>
         <tr>

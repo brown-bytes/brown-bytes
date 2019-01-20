@@ -6,6 +6,7 @@ use Phalcon\Forms\Element\Password;
 use Phalcon\Validation\Validator\PresenceOf;
 use Phalcon\Validation\Validator\Callback;
 use Phalcon\Validation\Validator\Email;
+use Phalcon\Validation\Validator\StringLength;
 
 class RegisterForm extends Form
 {
@@ -52,6 +53,12 @@ class RegisterForm extends Form
         $password->addValidators(array(
             new PresenceOf(array(
                 'message' => 'Password is required'
+            )), 
+            new StringLength(array(
+                'max'     => 50,
+                'min'     => 6, 
+                'messageMaximum' => 'That is too long a password...',
+                'message' => 'Come on, longer password'
             ))
         ));
         $this->add($password);

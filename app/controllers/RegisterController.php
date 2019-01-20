@@ -33,7 +33,10 @@ class RegisterController extends ControllerBase
             }
             
             $user = new Users();
-            $user->setPassword($password);
+            if(!$user->setPassword($password)) {
+                $this->flash->error('Fatal Hashing Error. Contact a dev.');
+                return $this->forward('register/index');
+            }
             $user->name = $name;
             $user->email = $email;
 

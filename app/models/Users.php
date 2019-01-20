@@ -44,7 +44,13 @@ class Users extends Model
         return $this->id;
     }
     public function setPassword($password) {
-        $this->password = sha1($password);
-        return true;
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
+        if($this->password)
+            return true;
+        else
+            return false;
+    }
+    public function verifyPassword($password) {
+        return password_verify($password, $this->password);
     }
 }

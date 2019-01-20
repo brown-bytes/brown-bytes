@@ -126,7 +126,7 @@ class Elements extends Component
     //2 all the time
     private $_mainPanels = array(
         'welcome' => array(
-            'appear' => 0,
+            'appear' => 2,
             'path' => 'homepage-panels/welcome'
         ),
         'market_snapshot' => array(

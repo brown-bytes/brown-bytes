@@ -57,22 +57,25 @@ class OfferController extends ControllerBase
         if (!$this->request->isPost()) {
             return $this->forward("offer/new");
         }
-
         $form = new OfferForm(new Offer);
         $offer = new Offer();
         
-        $data = $this->request->getPost();
-        if (!$form->isValid($data, $offer)) {
-            foreach ($form->getMessages() as $message) {
-                $this->flash->error($message);
+        try {
+            $data = $this->request->getPost();
+            if (!$form->isValid($data, $offer)) {
+                foreach ($form->getMessages() as $message) {
+                    $this->flash->error($message);
+                }
+                return $this->forward('offer/new');
             }
-            return $this->forward('offer/new');
+        } catch (Exception $e) {
+            printf($e);
+            die();
         }
-        $offer->user_id = $this->session->get('auth')['id'];
+        $offer->setUserId($this->session->get('auth')['id']);
         $offer->duration = $offer->expires;
         $offer->expires = (time() + $offer->expires*3600);
         $offer->anonymous = ($data['anonymous'] == 'on' ? 1 : 0);
-        
         try {
             if ($offer->save() == false) {
                 foreach ($offer->getMessages() as $message) {
@@ -88,7 +91,7 @@ class OfferController extends ControllerBase
             return $this->forward('offer/new');
         }
         $this->flash->success("Offer was created successfully");
-        return $this->forward("offer/index");
+        return $this->forward("offer/index/".$offer->getId());
     }
 
     public function editAction($id=null) {
