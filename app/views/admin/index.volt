@@ -2,10 +2,6 @@
 <i>Cool kids only.</i>
 <br/><br/>
 <h3>Actions<h3/>
-<table width="100%">
-	<tr>
-		<td>{{link_to("scraper/index", "Scrape", "class": "btn btn-primary") }}</td>
-		<td></td>
-	</tr>
-</table>
+<span>{{link_to("scraper/index", "Scrape All", "class": "btn btn-primary") }}</span>
+<span>{{link_to("scraper/event", "Scrape One", "class": "btn btn-primary") }}</span>
 {{ content() }}

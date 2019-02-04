@@ -35,15 +35,20 @@ Below is a list of events collected from Events@Brown and handpicked by cool stu
 						{{ event.title }}
 					</h3>
 					<p class="panel-subtitle">
-						{{ date('g:i A', event.time_start) }}
+						{{ date('g:i A', event.time_start - 18000) }}
 						
 						{% if event.time_end %}
 							 - 
-							{{ date('g:i A', event.time_end) }}
+							{{ date('g:i A', event.time_end - 18000) }}
 						{% endif %}
 					</p>
 					<p class="panel-text">
 						{{ event.location }}
+						{% if admin %}
+							</p>
+							<p>
+							<b>{{event.user_id}}</b>
+						{% endif %}
 					</p>
 					<a target="_blank" href="{{event.link}}" class="card-link">Details</a>
 				</div>

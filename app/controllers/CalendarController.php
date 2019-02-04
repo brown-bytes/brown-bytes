@@ -35,6 +35,23 @@ class CalendarController extends ControllerBase
             'order' => 'time_start ASC'
             ]
         );
+
+        if($this->session->admin) {
+            /*foreach($events as $event) {
+                if($event->user_id) {
+                    //var_dump($event);
+                    printf($event->user_id."<br/>");
+                    $user = Users::findFirstById($event->$user_id);
+                    if($user) {
+                        var_dump($user);
+                        $event->user_name = $user->name;
+                        printf($user."<br/>");
+                    }
+                } else {
+                    $event->user_name = 'Scraper';
+                }
+            }*/
+        }
         $this->view->events = $events;
 
     }
@@ -65,13 +82,13 @@ class CalendarController extends ControllerBase
 
         //Set all the fields here:
         $event->date_int = substr($event->date, 0, 4).substr($event->date, 5, 2).substr($event->date, 8, 2); //This is the date string for comparison
-        $event->time_start = strtotime($event->date_int.'T'.$event->time_number) + 18000;
-        if($event->time_start < time()) {
+        $original_time_start = strtotime($event->date_int.'T'.$event->time_number) + 18000;
+        if($original_time_start < time()) {
             $this->flash->error('Please only use future dates.');
             return $this->forward('calendar/new');
         }
-        $event->time_end = strtotime($event->date_int.'T'.$event->time_number_end) + 18000;
-        if($event->time_start > $event->time_end) {
+        $original_time_end = strtotime($event->date_int.'T'.$event->time_number_end) + 18000;
+        if($original_time_start > $original_time_end) {
             $this->flash->error('End time must be after start.');
             return $this->forward('calendar/new');
         }
@@ -86,11 +103,28 @@ class CalendarController extends ControllerBase
 
         //Try to save it
         try {
-            if ($event->save() == false) {
-                foreach ($event->getMessages() as $message) {
-                    $this->flash->error($message);
+            
+            for($i = 0; $i <= $event->repeat; $i++) {
+                
+                $new_event = new Event();
+
+                //Can we automate?
+                $new_event->title = $event->title;
+                $new_event->location = $event->location;
+                $new_event->group_title = $event->group_title;
+                $new_event->link = $event->link;
+                $new_event->brown_event_id = 0;
+
+                $new_event->time_start = strtotime('+'.$i.' Week', $original_time_start);
+                $new_event->time_end = strtotime('+'.$i.' Week', $original_time_end);
+                $new_event->date_int = date('Ymd', $new_event->time_start);
+                
+                if ($new_event->save() == false) {
+                    foreach ($new_event->getMessages() as $message) {
+                        $this->flash->error($message);
+                    }
+                    return $this->forward('calendar/new');
                 }
-                return $this->forward('calendar/new');
             }
             $form->clear();
         } catch (exception $e) {

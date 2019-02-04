@@ -8,7 +8,7 @@ Model::setup(['notNullValidations' => false]);
 
 class Event extends Model {
 	
-	public $id;
+	  public $id;
 
     public $brown_event_id;
 

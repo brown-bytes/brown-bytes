@@ -110,5 +110,17 @@ class EventForm extends Form
             )
         ));
         $this->add($time_number_end);
+
+        if($this->session->admin) {
+            $repeat = new Numeric('repeat');
+            $repeat->setLabel('Repeat for how many (additional) weeks:');
+            $repeat->setFilters(array('absint'));
+            $repeat->addValidators(array(
+                new PresenceOf(array(
+                    'message' => 'Please enter a number.'
+                ))
+            ));
+            $this->add($repeat);
+        }
     }
 }
