@@ -38,9 +38,10 @@ class ContactController extends ControllerBase
             }
             return $this->forward('contact/index');
         }
+        $notice = new Mailer('scott@huson.com', 'Feedback For Brown Bytes', serialize($data));
 
-        mail('scott@huson.com', 'Feedback For Brown Bytes', serialize($data));
 
         $this->flash->success('Thank you for your feedback. I appreciate your help in making this application better.');
+        return $this->forward('index');
     }
 }

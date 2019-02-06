@@ -42,6 +42,11 @@ class SessionController extends ControllerBase
             )
         ));
 
+        $user->last_login = date('y-m-d H:i:s');
+        if ($user->save() == false) {
+            $this->flash->error("Could not save time.");
+
+        }
         if ($user->isAdmin()) {
             $this->session->admin = true;
         }
