@@ -5,6 +5,10 @@ http://www.brownbytes.org/about/index
 http://www.brownbytes.org/contact/index
 http://www.brownbytes.org/team/index
 http://www.brownbytes.org/session/index
+http://www.brownbytes.org/calendar/index
+http://www.brownbytes.org/calendar/new
+http://www.brownbytes.org/calendar/create
+
 
 
 
