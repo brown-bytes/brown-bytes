@@ -23,7 +23,7 @@ class CalendarController extends ControllerBase
     public function indexAction() {
     	//See if there are offers because those should be suggested above
     	$market = new Market();
-    	$offers = $market->getCurrentOffers();
+    	$offers = $market->getSnapshot(); //Max is 7 offers (if it ever gets that high at one time)
 
     	$this->view->offers = $offers;
         $date_query_string = "date_int >= ".$this->getDateString();

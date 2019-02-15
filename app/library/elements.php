@@ -144,12 +144,12 @@ class Elements extends Component
         /*'user' => array(
             'appear' => 1,
             'path' => 'homepage-panels/user'
-        ),*/
+        ),
         'alternates' => array(
             'appear' => 2,
             'path' => 'homepage-panels/alternates'
         ),
-        /*'pangea' => array(
+        'pangea' => array(
             'appear' => 2,
             'path' => 'homepage-panels/pangea'
         ),*/

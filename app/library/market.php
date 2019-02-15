@@ -28,7 +28,8 @@ class Market extends Component {
 
             $location = Locations::findFirstById($offer->location);
             $offer->location_name = $location->title;
-
+            //get the id so it can be linked to
+            $offer->offer_id = $offer->getId();
             $offer->expiration = $this->getRemaining($offer->expires, time());
 
             $return[] = $offer;

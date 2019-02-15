@@ -12,6 +12,26 @@ Below is a list of events collected from Events@Brown and handpicked by cool stu
 {% endif %}
 <hr/>
 <div id='calendar'> 
+	{% if offers %}
+		<h3>Right Now</h3>
+		{% for offer in offers %}
+			<div class="panel panel-primary" style="margin-left:15px; ">
+				<div class="panel-heading">
+					<h3 class="panel-title">{{offer.title}}</h3>
+					<div class="row">
+						<div class="col-md-11">
+							{{offer.location_name}}<br/>
+							Expires in: {{offer.expiration}}<br/>
+						</div>
+						<div class="col-md-1" align="right">
+							{{link_to("/offer/index/"~ offer.offer_id, "Details", "class": "btn btn-default")}}
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	{% endif %}	
+
 	{% if events|length != 0 %}
 		{% set daystring = 0 %}
 		{% for event in events %}
@@ -31,26 +51,33 @@ Below is a list of events collected from Events@Brown and handpicked by cool stu
 
 			<div class="panel panel-primary" style="margin-left:15px; ">
 				<div class="panel-body">
-					<h3 class="panel-title">
-						{{ event.title }}
-					</h3>
-					<p class="panel-subtitle">
-						{{ date('g:i A', event.time_start - 18000) }}
-						
-						{% if event.time_end %}
-							 - 
-							{{ date('g:i A', event.time_end - 18000) }}
-						{% endif %}
-					</p>
-					<p class="panel-text">
-						{{ event.location }}
-						{% if admin %}
+					<div class="row">
+						<div class="col-md-11">
+							<h3 class="panel-title">
+								{{ event.title }}
+							</h3>
+							<p class="panel-subtitle">
+								{{ date('g:i A', event.time_start - 18000) }}
+								
+								{% if event.time_end %}
+									 - 
+									{{ date('g:i A', event.time_end - 18000) }}
+								{% endif %}
 							</p>
-							<p>
-							<b>{{event.user_id}}</b>
-						{% endif %}
-					</p>
-					<a target="_blank" href="{{event.link}}" class="card-link">Details</a>
+							<p class="panel-text">
+								{{ event.location }}
+								{% if admin %}
+									</p>
+									<p>
+									<b>{{event.user_id}}</b>
+								{% endif %}
+							</p>
+						</div>
+						<div class="col-md-1">
+							{{link_to(event.link, "Details", "class": "btn btn-primary")}}
+							{# <a target="_blank" href="{{event.link}}" class="card-link">Details</a>#}
+						</div>
+					</div>
 				</div>
 			</div>
 		{% endfor %}

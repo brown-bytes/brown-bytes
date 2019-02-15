@@ -27,7 +27,7 @@
 				</table>
 			</div>
 			<div class="col-lg-2 mx-auto" style="display:inline-block;">
-	            {{link_to("marketplace/index", "See All", 'class': "btn btn-primary btn-lg text-center") }}
+	            {{link_to("calendar/index", "See All", 'class': "btn btn-primary btn-lg text-center") }}
 	        </div>
 		{% else %}
 			<div class="col-lg-6 mx-auto">

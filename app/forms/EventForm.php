@@ -44,11 +44,11 @@ class EventForm extends Form
         $location = new Text('location');
         $location->setLabel('Location:');
         $location->setFilters(array('striptags', 'string'));
-        $location->addValidators(array(
+        /*$location->addValidators(array(
             new PresenceOf(array(
                 'message' => 'Location is required.'
             ))
-        ));
+        ));*/
         $this->add($location);
 
         // link
