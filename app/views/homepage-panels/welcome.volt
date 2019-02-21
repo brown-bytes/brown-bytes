@@ -6,7 +6,7 @@
           <p class="lead">Check out the <b><a href="/calendar">list</a></b>. Brown Bytes has all the <b>free food</b> on campus just for you!</p>
           <ul>
             <li>Built to help Brown students support each other through giving meal swipes and credits.</li>
-            <li>Learn and contribute to our vision by joining our <a target="_blank" href="https://discord.gg/3rwbJv">Discord</a>.</li>
+            <li>Learn and contribute to our vision by joining our <a target="_blank" href="https://discord.gg/FuVWu8K">Discord</a>.</li>
             <li>Never waste a swipe by giving to your fellow hungry Brunonians. </li>
             <li>Give and receive: A new payment method (Coming Soon to Brown Bytes!)</li>
             <li>Meet other hungry people!</li>
