@@ -74,7 +74,7 @@ Below is a list of events collected from Events@Brown and handpicked by cool stu
 							</p>
 						</div>
 						<div class="col-md-1">
-							{{link_to(event.link, "Details", "class": "btn btn-primary", "local":false)}}
+							{{link_to(event.link, "Details", "class": "btn btn-primary", "local":false, "target": "blank")}}
 							{# <a target="_blank" href="{{event.link}}" class="card-link">Details</a>#}
 						</div>
 					</div>
