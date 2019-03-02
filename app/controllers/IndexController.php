@@ -4,7 +4,7 @@ class IndexController extends ControllerBase
 {
     public function initialize()
     {
-        $this->tag->setTitle('Welcome');
+        $this->tag->setTitle('Welcome - Brown Bytes: Free Food For All');
         parent::initialize();
     }
 
