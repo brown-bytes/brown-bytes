@@ -34,7 +34,7 @@ class Event extends Model {
         $this->setSource('plugin__event');
     }
     public function addToGCal() {
-        date_default_timezone_set("America/New_York");
+        //date_default_timezone_set("America/New_York");
         $start = date('YmdHis', $this->time_start);
         if ($this->time_end) {
           $end = date('YmdHis', $this->time_end);
