@@ -39,7 +39,7 @@ class Event extends Model {
         if ($this->time_end) {
           $end = date('YmdHis', $this->time_end);
         } else {
-          $end = date('YmdHis', $this->time_start*3600);
+          $end = date('YmdHis', $this->time_start+3600);
         }
         $string = "http://www.google.com/calendar/event?action=TEMPLATE&text=BB :".preg_replace("/&#?[a-z0-9]+;/i","",$this->title)."&dates=".substr($start, 0, 8)."T".substr($start, 8)."Z"."/".substr($end, 0, 8)."T".substr($end, 8)."Z"."&details=This event was brought to you by Brown Bytes. Make sure to check that the food at this event aligns with your dietary restrictions or preferences.&location=".$this->location."&trp=false&sprop=&sprop=brownbytes:";
         return $string;
