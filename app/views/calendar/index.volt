@@ -1,3 +1,8 @@
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip(); 
+});
+</script>
 <h1>Free Food Calendar</h1>
 Below is a list of events collected from Events@Brown and handpicked by cool students. Make sure to verify the type of food available. 
 <h3>Actions</h3>
@@ -75,8 +80,8 @@ Below is a list of events collected from Events@Brown and handpicked by cool stu
 						</div>
 						<div class="col-md-2">
 							<div class="btn-group pull-right">
-								<a target="_blank" href="{{ event.addToGCal() }}" class="button btn btn-primary"><span class="glyphicon glyphicon-calendar"></span></a>
- 	 							<a target="_blank" href="{{ event.link }}" class="button btn btn-primary"><span class="glyphicon glyphicon-info-sign"></span></a>
+								<a target="_blank" href="{{ event.addToGCal() }}" class="button btn btn-primary" title="Add to Google Calendar"><span class="glyphicon glyphicon-calendar"></span></a>
+ 	 							<a target="_blank" href="{{ event.link }}" class="button btn btn-primary" title="See More Event Info"><span class="glyphicon glyphicon-info-sign"></span></a>
 								{#{link_to(event.link, "<span class='glyphicon glyphicon-calendar'></span>", "class": "btn btn-primary", "local":false, "target": "blank")}#}
 								{# <a target="_blank" href="{{event.link}}" class="card-link">Details</a>#}
 							</div>
