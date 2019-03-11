@@ -80,6 +80,7 @@ class CalendarController extends ControllerBase
             die();
         }
 
+
         //Set all the fields here:
         $event->date_int = substr($event->date, 0, 4).substr($event->date, 5, 2).substr($event->date, 8, 2); //This is the date string for comparison
         $original_time_start = strtotime($event->date_int.'T'.$event->time_number) + 18000;
@@ -100,6 +101,11 @@ class CalendarController extends ControllerBase
             $event->brown_event_id = 0;
         }
         $event->user_id = $this->session->get('auth')['id'];
+
+        //This is for admins only:
+        if($this->session->admin) {
+            var_dump($event);
+        }
 
         //Try to save it
         try {
