@@ -102,11 +102,6 @@ class CalendarController extends ControllerBase
         }
         $event->user_id = $this->session->get('auth')['id'];
 
-        //This is for admins only:
-        if($this->session->admin) {
-            var_dump($event);
-        }
-
         //Try to save it
         try {
             
@@ -115,6 +110,7 @@ class CalendarController extends ControllerBase
                 $new_event = new Event();
 
                 //Can we automate?
+                $new_event->user_id = $event->user_id;
                 $new_event->title = $event->title;
                 $new_event->location = $event->location;
                 $new_event->group_title = $event->group_title;
