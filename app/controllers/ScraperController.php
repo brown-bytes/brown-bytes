@@ -54,6 +54,7 @@ class ScraperController extends ControllerBase
 					$new_event->location = $event->location;
 					$new_event->link = "https://events.brown.edu/".$event->href;
 					$new_event->date_int = $day_info;
+                    $new_event->user_id = 0;
 					//Try to add the event
 					try {
 						if($new_event->save() == false) {

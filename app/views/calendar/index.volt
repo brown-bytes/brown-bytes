@@ -62,11 +62,11 @@ Below is a list of events collected from Events@Brown and handpicked by cool stu
 								{{ event.title }}
 							</h3>
 							<p class="panel-subtitle">
-								{{ date('g:i A', event.time_start - 18000) }}
+								{{ date('g:i A', event.time_start - 14400) }}
 								
 								{% if event.time_end %}
 									 - 
-									{{ date('g:i A', event.time_end - 18000) }}
+									{{ date('g:i A', event.time_end - 14400) }}
 								{% endif %}
 							</p>
 							<p class="panel-text">

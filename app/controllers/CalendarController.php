@@ -83,12 +83,12 @@ class CalendarController extends ControllerBase
 
         //Set all the fields here:
         $event->date_int = substr($event->date, 0, 4).substr($event->date, 5, 2).substr($event->date, 8, 2); //This is the date string for comparison
-        $original_time_start = strtotime($event->date_int.'T'.$event->time_number) + 18000;
+        $original_time_start = strtotime($event->date_int.'T'.$event->time_number) + 14400;
         if($original_time_start < time()) {
             $this->flash->error('Please only use future dates.');
             return $this->forward('calendar/new');
         }
-        $original_time_end = strtotime($event->date_int.'T'.$event->time_number_end) + 18000;
+        $original_time_end = strtotime($event->date_int.'T'.$event->time_number_end) + 14400;
         if($original_time_start > $original_time_end) {
             $this->flash->error('End time must be after start.');
             return $this->forward('calendar/new');
@@ -121,6 +121,11 @@ class CalendarController extends ControllerBase
                 $new_event->time_end = strtotime('+'.$i.' Week', $original_time_end);
                 $new_event->date_int = date('Ymd', $new_event->time_start);
                 
+                if($this->session->admin && $new_event->date_int != $event->date_int) {
+                    $this->flash->error('Looks like the dates are messed up. ACTION REQUIRED!');
+
+                }
+
                 if ($new_event->save() == false) {
                     foreach ($new_event->getMessages() as $message) {
                         $this->flash->error($message);
