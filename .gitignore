@@ -2,3 +2,4 @@
 cache/volt/
 
 tbs_homepage/
+*.DS_Store
