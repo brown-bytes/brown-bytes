@@ -26,7 +26,7 @@ class CalendarController extends ControllerBase
     	$offers = $market->getSnapshot(); //Max is 7 offers (if it ever gets that high at one time)
 
     	$this->view->offers = $offers;
-        $date_query_string = "date_int >= ".$this->getDateString();
+        $date_query_string = "date_int >= ".$this->getDateString()." AND visible = 1";
         //Get all the calendar events:
         $events = Event::find( 
             [
@@ -141,6 +141,20 @@ class CalendarController extends ControllerBase
             return $this->forward('calendar/new');
         }
         $this->flash->success("Event was created successfully");
+        return $this->forward("calendar/index");
+    }
+    //This function hides events from the public view
+    public function hideAction($id) {
+        if($id){
+            $event = Event::findFirstById((int)$id);
+            if(!$event){
+                $this->flash->error("Invalid ID");
+            } else {
+                if(!$event->hide()) {
+                    $this->flash->error("Internal error: hiding failed");
+                }
+            }
+        }
         return $this->forward("calendar/index");
     }
 

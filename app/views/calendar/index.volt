@@ -82,6 +82,9 @@ Below is a list of events collected from Events@Brown and handpicked by cool stu
 							<div class="btn-group pull-right">
 								<a target="_blank" href="{{ event.addToGCal() }}" class="button btn btn-primary" title="Add to Google Calendar"><span class="glyphicon glyphicon-calendar"></span></a>
  	 							<a target="_blank" href="{{ event.link }}" class="button btn btn-primary" title="See More Event Info"><span class="glyphicon glyphicon-info-sign"></span></a>
+ 	 							{% if admin %}
+ 	 								<a href={{ "/calendar/hide/" ~ event.id }} class="button btn btn-danger" title="Hide"><span class="glyphicon glyphicon-remove"></span></a>
+ 	 							{% endif %}
 								{#{link_to(event.link, "<span class='glyphicon glyphicon-calendar'></span>", "class": "btn btn-primary", "local":false, "target": "blank")}#}
 								{# <a target="_blank" href="{{event.link}}" class="card-link">Details</a>#}
 							</div>

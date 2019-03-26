@@ -53,7 +53,7 @@ class SecurityPlugin extends Plugin
 				'dashboard'    	 => array('index', 'profile', 'privacy', 'offers'),
 				'admin'          => array('index'),
 				'scraper'          => array('index', 'event'),
-				'calendar'   => array('index', 'new', 'create')
+				'calendar'   => array('index', 'new', 'create', 'hide')
 			);
 			foreach ($privateResources as $resource => $actions) {
 				$acl->addResource(new Resource($resource), $actions);
