@@ -14,6 +14,7 @@ class Users extends Model
     public $created_on;
     public $last_login;
     public $verify;
+    public $verify_timer;
     public $api_private;
     private $password;
 
@@ -33,9 +34,7 @@ class Users extends Model
     public function isAdmin() {
         return $this->admin;
     }
-
     
-
     public function getName() {
         return $this->name;
     }
@@ -45,7 +44,7 @@ class Users extends Model
     }
     public function setPassword($password) {
         $this->password = password_hash($password, PASSWORD_DEFAULT);
-        if($this->password)
+        if($this->save())
             return true;
         else
             return false;

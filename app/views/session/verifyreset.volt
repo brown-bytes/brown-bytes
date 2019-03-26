@@ -1,32 +1,44 @@
 
+
 {{ content() }}
 
 <div class="row">
 
     <div class="col-md-6">
         <div class="page-header">
-            <h2>Log In</h2>
+            <h2>Reset Password</h2>
         </div>
-        {{ form('session/start', 'role': 'form') }}
+        {{ form('session/completereset', 'role': 'form') }}
             <fieldset>
-                <div class="form-group">
-                    <label for="email">Email</label>
+            	<div class="form-group hidden">
+                    <label for="string">Verify Key</label>
                     <div class="controls">
-                        {{ text_field('email', 'class': "form-control") }}
+                        {{ text_field('verify-key', 'class': "form-control", 'value': verify) }}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="email">Account Email</label>
                     <div class="controls">
-                        {{ password_field('password', 'class': "form-control") }}
+                        {{ text_field('verify-email', 'class': "form-control") }}
                     </div>
                 </div>
                 <div class="form-group">
-                    {{ submit_button('Login', 'class': 'btn btn-primary btn-large') }}
+                    <label for="password">New Password</label>
+                    <div class="controls">
+                        {{ password_field('password1', 'class': "form-control") }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Repeat New Password</label>
+                    <div class="controls">
+                        {{ password_field('password2', 'class': "form-control") }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ submit_button('Reset', 'class': 'btn btn-default btn-large') }}
                 </div>
             </fieldset>
         </form>
-        <a href="/session/tryreset">Forgot Password</a>
     </div>
 
     <div class="col-md-6">

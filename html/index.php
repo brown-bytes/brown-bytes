@@ -3,6 +3,9 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL|E_STRICT);
 
+//printf("Sorry under development");
+//die();
+
 use Phalcon\Mvc\Application;
 use Phalcon\Config\Adapter\Ini as ConfigIni;
 
@@ -32,4 +35,5 @@ try {
 }
 
 
+?>
 

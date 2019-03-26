@@ -17,7 +17,7 @@ class IndexController extends ControllerBase
 		  	<hr>
 		  	<p class="mb-0"><u>Please</u> let me know through the <a href="contact/" class="alert-link">contact</a> page if you have any suggestions.</p>
 		</div>';*/
-        $message = '
+        /*$message = '
         <div class="alert alert-danger alert-dismissable" role="alert">
             <button type="button" class="close" data-dismiss="alert">×</button>
             <h4 class="alert-heading">Good news everyone!</h4>
@@ -25,7 +25,14 @@ class IndexController extends ControllerBase
             <hr>
             <p class="mb-0"><u>Please</u> let me know through the <a href="contact/" class="alert-link">contact</a> page if you have any suggestions for features.</p>
         </div>
-        ';
-		//echo $message;
+        ';*/
+        $message = '<div class="alert alert-danger alert-dismissable" role="alert">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <h4 class="alert-heading">Warning!</h4>
+            <p>For the next week Brown Bytes will be under development. There are few free food events for Spring Break, so I will be building in more features to make your life easier.</p>
+            <hr>
+            <p class="mb-0"><u>Please</u> let me know through the <a href="contact/" class="alert-link">contact</a> page if you have any suggestions for features.</p>
+        </div>';
+		echo $message;
     }
 }

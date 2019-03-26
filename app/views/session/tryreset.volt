@@ -1,32 +1,27 @@
 
+
 {{ content() }}
 
 <div class="row">
 
     <div class="col-md-6">
         <div class="page-header">
-            <h2>Log In</h2>
+            <h2>Reset Password</h2>
         </div>
-        {{ form('session/start', 'role': 'form') }}
+        {{ form('session/reset', 'role': 'form') }}
             <fieldset>
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email">Account Email</label>
                     <div class="controls">
                         {{ text_field('email', 'class': "form-control") }}
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <div class="controls">
-                        {{ password_field('password', 'class': "form-control") }}
-                    </div>
-                </div>
-                <div class="form-group">
-                    {{ submit_button('Login', 'class': 'btn btn-primary btn-large') }}
+                    {{ submit_button('Reset', 'class': 'btn btn-default btn-large') }}
                 </div>
             </fieldset>
         </form>
-        <a href="/session/tryreset">Forgot Password</a>
+        <a href="/session/index">Back to Login</a>
     </div>
 
     <div class="col-md-6">
