@@ -24,14 +24,15 @@ class CalendarController extends ControllerBase
     	//See if there are offers because those should be suggested above
     	$market = new Market();
     	$offers = $market->getSnapshot(); //Max is 7 offers (if it ever gets that high at one time)
-
+        if($this->session->admin) $number_of_events = 200;
+        else $number_of_events = 30;
     	$this->view->offers = $offers;
         $date_query_string = "date_int >= ".$this->getDateString()." AND visible = 1";
         //Get all the calendar events:
         $events = Event::find( 
             [
             $date_query_string,
-            'limit' => 30,
+            'limit' => $number_of_events,
             'order' => 'time_start ASC'
             ]
         );
