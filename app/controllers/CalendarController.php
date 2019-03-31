@@ -27,7 +27,7 @@ class CalendarController extends ControllerBase
         if($this->session->admin) $number_of_events = 200;
         else $number_of_events = 30;
     	$this->view->offers = $offers;
-        $date_query_string = "date_int >= ".$this->getDateString()." AND visible = 1";
+        $date_query_string = "date_int >= ".$this->getDateString().($this->session->admin ? "" : " AND visible = 1");
         //Get all the calendar events:
         $events = Event::find( 
             [
