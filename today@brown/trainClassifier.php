@@ -14,7 +14,6 @@ $classifier = new \Niiknow\Bayes(); //Create a classifier
 $cnt = 0;
 if ($myfileyes) {
     while (($buffer = fgets($myfileyes, 4096)) !== false) {
-    	echo $buffer;
         $classifier->learn($buffer, 1);
         $cnt++;
     }
@@ -36,7 +35,19 @@ if ($myfileno) {
     fclose($myfileno);
     echo "Trained on ".$cnt." lines of no free food data\n";
 }
+
+//Write the classifier to a file:
+$output_weights = fopen("classifier_weights.txt", "w") or die("Unable to open file!");
+fwrite($output_weights, $classifier->toJson());
+echo "Wrote weights to file classifier_weights.txt\n";
+fclose($output_weights);
+
+
 //This is a test:
-echo $classifier->categorize('no shit poo asdfa sdfas dfasdf asdf dfsd f asd asda2 asda w asd asd');
+/*if($classifier->categorize('Ali Momeni is a Professor of Practice within the Brown Arts Initiative and Data Science Initiative. His research interest includes educational technologies, human-computer interaction for performative applications of robotics, playful urban interventions, interactive projection performance, machine learning for artists and designers, interactive tools or storytelling and experiential learning, mobile and hybrid musical instruments, and the intersection of sound, music and health. Registration is free: ')) {
+    echo "YESSS!\n";
+} else {
+    echo "NOOOPE!\n";
+}*/
 
 ?>

@@ -34,7 +34,7 @@ foreach($json->events as $date => $day) {
 		unset($html);
 
 		try {
-			$text = $event_json->event->description." ".$event_json->event->title;
+			$text = $event_json->event->title." ".$event_json->event->description;
 			if(!$text) continue;
 			$text = strip_tags($text);
 			$text = preg_replace("/[^A-Za-z0-9 ]/", '', $text);
