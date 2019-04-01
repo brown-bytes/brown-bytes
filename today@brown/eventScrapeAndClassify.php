@@ -68,23 +68,23 @@ if($emails) {
 				}
 
 				$evnt = array();
-				$evnt['id'] = $information->id;
-				$evnt['link'] = (isset($information->link) ? $information->link : "https://today.brown.edu/events/".$information->id);
-				$evnt['location'] = $information->location;
-				$evnt['description'] = $information->description;
-				$evnt['title'] = $information->summary;
+				$evnt['id'] = (int)$information->id;
+				$evnt['link'] = (isset($information->link) ? addslashes($information->link) : "https://today.brown.edu/events/".$evnt['id']);
+				$evnt['location'] = addslashes($information->location);
+				$evnt['description'] = addslashes($information->description);
+				$evnt['title'] = addslashes($information->summary);
 				$evnt['time_start'] = strtotime($information->start);
 				$evnt['time_end'] = ($information->start == $information->end ? NULL : strtotime($information->end));
 				$evnt['date_int'] = date('Ymd', strtotime($information->start));
 
 				$result = $mysqli->query("SELECT * FROM plugin__event WHERE date_int=".$evnt['date_int']." AND brown_event_id=".$evnt['id']);
 				if($result->num_rows) { //If there is overlap, do not add this event. 
-					printf("Duplicate found<br/>");
+					printf("Duplicate found<br/>\n");
 					continue;
 				}
 
 				//Insert into the database
-				if (!$mysqli->query(
+				$result = $mysqli->query(
 					"INSERT INTO plugin__event 
 						(
 							visible, 
@@ -111,7 +111,9 @@ if($emails) {
 							'".$evnt['link']."',
 							".$evnt['date_int']."
 						)
-				")) printf("ERROR INSERT<br/>");
+				");
+
+				if(!$result) printf($mysqli->error."\n");
 				unset($evnt);
 			}
 			
