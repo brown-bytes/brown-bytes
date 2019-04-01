@@ -3,16 +3,8 @@
 require_once('../vendor/autoload.php');
 require_once('../vendor/simple_html_dom/simple_html_dom.php');
 
-/*use Medoo\Medoo;
-
-$database = new Medoo([
-    'database_type' => 'mysql',
-    'database_name' => 'brown_bytes',
-    'server' => 'localhost',
-    'username' => 'root',
-    'password' => ''
-]);*/
-$mysqli = new mysqli("localhost", "root", "", "brown_bytes");
+$config = parse_ini_file("/brownbytesconfig/config.ini");
+$mysqli = new mysqli("localhost", $config["username"], $config["password"], "brown_bytes");
 
 
 //Make the that classifyer weights file can be opened.
@@ -84,17 +76,8 @@ if($emails) {
 				$evnt['time_start'] = strtotime($information->start);
 				$evnt['time_end'] = ($information->start == $information->end ? NULL : strtotime($information->end));
 				$evnt['date_int'] = date('Ymd', strtotime($information->start));
-				
-				//Search for this event to see if it already exists
-				$data = $database->select('plugin__event', [
-				    'date_int',
-				    'brown_event_id'
-				], [
-				    'brown_event_id' => $evnt['id'], //Id is unique so there can only be one
-				    'date_int' => $evnt['date_int']
-				]);
 
-				if($data) { //If there is overlap, do not add this event. 
+				if($mysqli->query("SELECT * FROM plugin__event WHERE date_int=".$evnt['date_int']." AND brown_event_id=".$evnt['id']."")) { //If there is overlap, do not add this event. 
 					printf("Duplicate found<br/>");
 					continue;
 				}
@@ -128,19 +111,6 @@ if($emails) {
 							".$evnt['date_int']."
 						)
 				")) printf("ERROR INSERT<br/>");
-				/*$data = $database->insert("plugin__event", [
-					"visible" => 0,
-					"brown_event_id" => $evnt['id'],
-					"title" => $evnt['title'],
-					"user_id" => 0,
-					"time_start" => $evnt['time_start'],
-					"time_end" => $evnt['time_end'],
-					"group_title" => "Today@Brown",
-					"location" => $evnt['location'],
-					"link" => $evnt['link'],
-					"date_int" => $evnt['date_int']
-				]);*/
-								
 				unset($evnt);
 			}
 			
@@ -149,9 +119,5 @@ if($emails) {
 			break; //Only want the most recent email, maybe change this for training and data collection. 
 		}
 	}
-	//For the list of events, print them out:
-	/*foreach($potential_events as $event) {
-		printf($event['title']."<br/>");
-	}*/
 }
 ?>
