@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fecfeb7a3dafaa300f6096defbdc842f",
+    "content-hash": "9a50cbbc102b10f8ca93efc982ab33b0",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -124,32 +124,33 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.4.2",
+            "version": "1.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c"
+                "reference": "9f83dded91781a01c63574e387eaa769be769115"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
-                "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/9f83dded91781a01c63574e387eaa769be769115",
+                "reference": "9f83dded91781a01c63574e387eaa769be769115",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.4.0",
-                "psr/http-message": "~1.0"
+                "psr/http-message": "~1.0",
+                "ralouphie/getallheaders": "^2.0.5"
             },
             "provide": {
                 "psr/http-message-implementation": "1.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.0"
+                "phpunit/phpunit": "~4.8.36 || ^5.7.27 || ^6.5.8"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.4-dev"
+                    "dev-master": "1.5-dev"
                 }
             },
             "autoload": {
@@ -179,26 +180,27 @@
             "keywords": [
                 "http",
                 "message",
+                "psr-7",
                 "request",
                 "response",
                 "stream",
                 "uri",
                 "url"
             ],
-            "time": "2017-03-20T17:10:46+00:00"
+            "time": "2018-12-04T20:46:45+00:00"
         },
         {
             "name": "mailjet/mailjet-apiv3-php",
-            "version": "v1.3.0",
+            "version": "v1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mailjet/mailjet-apiv3-php.git",
-                "reference": "a56eb5cb5915bc8a98a57f885fec5fe616518ac5"
+                "reference": "9d89b9a424a9631bff8e499cbbe34058481e8102"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mailjet/mailjet-apiv3-php/zipball/a56eb5cb5915bc8a98a57f885fec5fe616518ac5",
-                "reference": "a56eb5cb5915bc8a98a57f885fec5fe616518ac5",
+                "url": "https://api.github.com/repos/mailjet/mailjet-apiv3-php/zipball/9d89b9a424a9631bff8e499cbbe34058481e8102",
+                "reference": "9d89b9a424a9631bff8e499cbbe34058481e8102",
                 "shasum": ""
             },
             "require": {
@@ -235,7 +237,64 @@
                 "php",
                 "v3"
             ],
-            "time": "2018-06-20T06:12:51+00:00"
+            "time": "2018-10-31T13:24:45+00:00"
+        },
+        {
+            "name": "niiknow/bayes",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/niiknow/bayes.git",
+                "reference": "a21e4481b9ebe0f9233ec4536b97a165d48f562c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/niiknow/bayes/zipball/a21e4481b9ebe0f9233ec4536b97a165d48f562c",
+                "reference": "a21e4481b9ebe0f9233ec4536b97a165d48f562c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Niiknow\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tom Noogen",
+                    "email": "friends@niiknow.org"
+                }
+            ],
+            "description": "a machine learning lib",
+            "keywords": [
+                "bayes",
+                "classifier",
+                "lib",
+                "library",
+                "machine-learning",
+                "machine-learning-algorithm",
+                "naive",
+                "naive-bayes",
+                "naive-bayes-algorithm",
+                "naive-bayes-classification",
+                "naive-bayes-classifier",
+                "naivebayes",
+                "niiknow",
+                "php",
+                "php-library",
+                "php-ml"
+            ],
+            "time": "2019-01-18T04:04:19+00:00"
         },
         {
             "name": "phalcon/cphalcon",
@@ -347,6 +406,46 @@
                 "response"
             ],
             "time": "2016-08-06T14:39:51+00:00"
+        },
+        {
+            "name": "ralouphie/getallheaders",
+            "version": "2.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ralouphie/getallheaders.git",
+                "reference": "5601c8a83fbba7ef674a7369456d12f1e0d0eafa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ralouphie/getallheaders/zipball/5601c8a83fbba7ef674a7369456d12f1e0d0eafa",
+                "reference": "5601c8a83fbba7ef674a7369456d12f1e0d0eafa",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~3.7.0",
+                "satooshi/php-coveralls": ">=1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/getallheaders.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ralph Khattar",
+                    "email": "ralph.khattar@gmail.com"
+                }
+            ],
+            "description": "A polyfill for getallheaders.",
+            "time": "2016-02-11T07:05:27+00:00"
         }
     ],
     "packages-dev": [],

@@ -1,0 +1,49 @@
+{
+  "name": "niiknow/bayes",
+  "description": "a machine learning lib",
+  "keywords": [
+    "bayes",
+    "lib",
+    "library",
+    "niiknow",
+    "naive-bayes-classifier",
+    "naive-bayes",
+    "naive-bayes-algorithm",
+    "naivebayes",
+    "naive",
+    "machine-learning",
+    "machine-learning-algorithm",
+    "classifier",
+    "php-ml",
+    "php",
+    "php-library",
+    "naive-bayes-classification"
+  ],
+  "license": "MIT",
+  "authors": [{
+    "name": "Tom Noogen",
+    "email": "friends@niiknow.org"
+  }],
+  "type": "library",
+  "require": {
+    "php": ">=7.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~6.3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Niiknow\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "config": {
+    "prefer-install": "dist"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
