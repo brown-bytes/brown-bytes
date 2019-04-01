@@ -86,7 +86,7 @@ Below is a list of events collected from Events@Brown and handpicked by cool stu
  	 								{% if event.visible %}
  	 									<a href={{ "/calendar/hide/" ~ event.id }} class="button btn btn-danger" title="Hide"><span class="glyphicon glyphicon-remove"></span></a>
  	 								{% else %}
- 	 									<a href={{ "/calendar/hide/" ~ event.id }} class="button btn btn-success" title="Hide"><span class="glyphicon glyphicon-ok"></span></a>
+ 	 									<a href={{ "/calendar/show/" ~ event.id }} class="button btn btn-success" title="Hide"><span class="glyphicon glyphicon-ok"></span></a>
  	 								{% endif %}
  	 							{% endif %}
 								{#{link_to(event.link, "<span class='glyphicon glyphicon-calendar'></span>", "class": "btn btn-primary", "local":false, "target": "blank")}#}

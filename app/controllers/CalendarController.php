@@ -158,6 +158,26 @@ class CalendarController extends ControllerBase
         }
         return $this->forward("calendar/index");
     }
+    //This function shows events in the public view
+    public function showAction($id) {
+        if($id){
+            printf('shitshow1');
+            $event = Event::findFirstById((int)$id);
+            if(!$event){
+                $this->flash->error("Invalid ID");
+            } else {
+                printf('shitshow2');
+                $event->visible = 1;
+                if(!$event->save()) {
+                    printf('shitshow4');
+                    $this->flash->error("Internal error: hiding failed");
+                }
+
+                printf('shitshow3');
+            }
+        }
+        return $this->forward("calendar/index");
+    }
 
     //This function just returns the current date string.
     public function getDateString() {
