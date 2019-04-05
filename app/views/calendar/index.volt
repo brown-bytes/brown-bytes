@@ -1,8 +1,6 @@
-<script>
-$(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip(); 
-});
-</script>
+{#<style type="text/css">
+.collapse.in { display: inline-block;}
+</style>#}
 <h1>Free Food Calendar</h1>
 Below is a list of events collected from Events@Brown and handpicked by cool students. Make sure to verify the type of food available. 
 <h3>Actions</h3>
@@ -39,18 +37,21 @@ Below is a list of events collected from Events@Brown and handpicked by cool stu
 
 	{% if events|length != 0 %}
 		{% set daystring = 0 %}
+		<div>{#There is an extra div because we end one every time we detect a new day.#}
 		{% for event in events %}
 			{# This handles the headers #}
 			{% if event.date_int == daystring %}
 				{# This is if the day header has already been posted #}
 			{% else %}
+				</div>
 				{# This is if the day header needs to be posted (different) #}
 				{% set daystring = event.date_int %}
-				<div class="day_header">
-					<h3> {# reformat THIS NEEDS TO BE DONE! #}
-						{{ date('l, F j', event.time_start) }}
+				<div class="day_header {{ daystring }}">
+					<h3 class="day-string">
+						{{ date('l, F j', event.time_start) }} <a title="Collapse" onClick="return collapse('{{daystring }}')"><span class="glyphicon glyphicon-chevron-down"></span></a>
 					</h3>
 				</div>
+				<div id="collapse{{ daystring }}" class="day"> {# This makes sure that all the days events are held in a single div to be collapsed #}
 			{% endif %}
 			
 
@@ -97,11 +98,27 @@ Below is a list of events collected from Events@Brown and handpicked by cool stu
 				</div>
 			</div>
 		{% endfor %}
+		</div>{#finishes the last div #}
 	{% else %}
 		<b>That's weird, there are no events with food coming up. Contact the team if this issue keeps occuring.</b>
 	{% endif %}
 </div>
 
+<script type='text/javascript'>
+    function collapse(date_int) {
+		$('div#collapse'+date_int).slideToggle('fast');
+		var $symbol = $('div.day_header.'+date_int+' span.glyphicon');
+		if ($symbol.hasClass('glyphicon-chevron-down')) {
+			$symbol.removeClass('glyphicon-chevron-down');
+			$symbol.addClass('glyphicon-chevron-left');
+		} else {
+			$symbol.removeClass('glyphicon-chevron-left');
+			$symbol.addClass('glyphicon-chevron-down');
+		}
+    	return true;
+    }
+
+</script>
 
 
 

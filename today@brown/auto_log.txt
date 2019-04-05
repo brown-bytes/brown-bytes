@@ -1,0 +1,133 @@
+This is the log file:
+
+Starting Scrape<br/>NO:   What I Am Thinking About Now: Dana Gooley, Music
+<br/>YES:   Wind Down Wednesdays - Free Backrub!
+<br/>Duplicate found<br/>
+YES:   Tank and the Bangas: Songwriting Workshop | Today
+<br/>Duplicate found<br/>
+NO:   BrownConnect LINK/SEW Open Hours
+<br/>YES:   Curious Trade: Art and Commerce
+<br/>Duplicate found<br/>
+YES:   TODAY- Deconstructing the Dream in Urban Midwest
+<br/>Duplicate found<br/>
+YES:   TODAY- Journalism in the Trump Era with Jim Acosta
+<br/>Duplicate found<br/>
+YES:   Against 'Best Practices': Curricular Innovation 
+<br/>Duplicate found<br/>
+YES:   Sarah Doyle Library Open House - TONIGHT!
+<br/>Duplicate found<br/>
+YES:   Foreign Flicks #19
+<br/>Duplicate found<br/>
+NO:   Weekly BARC mtg - Wildlife Sanctuary
+<br/>NO:   Financial Aid & Study Abroad Information Session
+<br/>NO:   TOMORROW: Public Health Research Day 2019
+<br/>YES:   Reading:  Novelist Mary-Beth Hughes
+<br/>Duplicate found<br/>
+NO:   Embracing Identity, Overcoming Obstacles
+<br/>YES:   Literary Arts DUG ~ Snack, Snack, SUBMIT
+<br/>Duplicate found<br/>
+YES:   Urban Studies Bus Tour #5 - “The Avenue Concept”
+<br/>Duplicate found<br/>
+YES:   Matthew Slesinki and Benjamin Nacar
+<br/>Duplicate found<br/>
+YES:   Daniel Milano ’93 Memorial Jazz Band Concert
+<br/>Duplicate found<br/>
+YES:   Brown STEAM Design Fiction Makeathon
+<br/>Duplicate found<br/>
+YES:   Michael Moffitt–Salary Negotiation & Your Next Job
+<br/>Duplicate found<br/>
+YES:   Panel Discussion: Nimble Species
+<br/>Duplicate found<br/>
+YES:   Next Wednesday: Japan Week Lecture
+<br/>Duplicate found<br/>
+YES:   Poetry Reading by Cheryl Savageau
+<br/>Duplicate found<br/>
+NO:   Darrell M. West – The Future of Work
+<br/>YES:   Beloved Kin and Memory Lands: Keynotes
+<br/>Duplicate found<br/>
+YES:   Give and Take: Long Table Discussion | 4/11
+<br/>Duplicate found<br/>
+NO:   One World Government and the Oneness of Humankind
+<br/>NO:   Fireside chat with co-founder of Lyra Health
+<br/>YES:   Readings by Cristina García and Dariel Suarez
+<br/>Duplicate found<br/>
+YES:   Talk by Julio Crivelli 
+<br/>Duplicate found<br/>
+YES:   Thinking Out Loud:Teaching Old Bacteria New Tricks
+<br/>Duplicate found<br/>
+YES:   WANTED: Chinese Music Performers!
+<br/>Duplicate found<br/>
+NO:   U-Lock or U-Lose Event
+<br/>NO:   Register Your Personal Property Today!
+<br/>NO:   Effective &  Confident Communication Club
+<br/>NO:   Service in Memory of William Cosgrove: Friday at 4
+<br/>NO:   Washington University in St. Louis SOM
+<br/>YES:   Indigenous Pedagogy & Transforming the Academy
+<br/>Duplicate found<br/>
+YES:   Latinx Heritage Series Presents: Denice Frohman
+<br/>Duplicate found<br/>
+Starting Scrape<br/>YES:   Susan Pollock - Which Bones Matter?
+<br/>Duplicate found<br/>
+NO:   TODAY, 12pm! Ali Momeni
+<br/>YES:   Startup Studio: First Term Sheet from VC/Investor
+<br/>Duplicate found<br/>
+NO:   Apply to Become a Peer Career Advisor
+<br/>YES:   Perception & Action Seminar Series - Ian Phillips
+<br/>Duplicate found<br/>
+NO:   Friedman Family Fund Lecture - Dr. Jessi Grieser
+<br/>YES:   CLACS: Film Screening of 'Entretejido'
+<br/>Duplicate found<br/>
+NO:   TODAY- Medicare for All: Politics & Practicalities
+<br/>YES:   Pico Iyer: Staying Sane in an Accelerating World
+<br/>Duplicate found<br/>
+NO:   APMA DUG Spring 2019 Lecture - Today!
+<br/>YES:   Reinhard Bernbeck - Jihad Made in Germany
+<br/>Duplicate found<br/>
+NO:   TODAY Pizza with Law School Admissions Director
+<br/>NO:   Consultation as a Key Process of Problem-Solving
+<br/>YES:   TNS tonight: Spirituality at the US/Mexico Border
+<br/>Duplicate found<br/>
+YES:   TOMORROW! Jim Yong Kim ‘82: Keynote Address
+<br/>Duplicate found<br/>
+YES:   CLOTHING SWAP AND PLASTIC BAG DRIVE!!!
+<br/>Duplicate found<br/>
+NO:   TOMORROW: Public Health Career Panel
+<br/>NO:   Leveraging Your Teaching Experience
+<br/>NO:   Just Transition Workshop
+<br/>YES:   'Narratives of Debt' conference on April 5 & 6
+<br/>Duplicate found<br/>
+NO:   Kingian Nonviolence Training
+<br/>NO:   PIH Engage: Bending the Arc Screening 
+<br/>NO:   Panel: The Challenges to Global Governance
+<br/>YES:   Environmental 'Flash Talk' and Poster Competition
+<br/>Duplicate found<br/>
+YES:   Beloved Kin and Memory Lands: Panel Discussion
+<br/>Duplicate found<br/>
+NO:   Panel: The Power and Limits of Local Interventions
+<br/>YES:   M. Gomez-Barris Environmental Humanities Lecture
+<br/>Duplicate found<br/>
+YES:   Fault Lines in the Paris Climate Agreement?
+<br/>Duplicate found<br/>
+YES:   2-day Lecture w/John Hamilton, Harvard University
+<br/>Duplicate found<br/>
+NO:   Michael Tesler – Identity Crisis
+<br/>YES:   When Deportation is a Death Sentence
+<br/>Duplicate found<br/>
+YES:   French Cinephilia - Screening of GriGris
+<br/>Duplicate found<br/>
+YES:   Lunch–“Teaching Hebrew” with Prof. Ruti Ben-Yehuda
+<br/>Duplicate found<br/>
+YES:   Freud’s Moses of Michelangelo 
+<br/>Duplicate found<br/>
+NO:   Film: The Gate - Dawn of The Baha'i Faith
+<br/>NO:   Escape the Haffenreffer
+<br/>YES:   Game of Thrones Watch Party + FREE Food
+<br/>Duplicate found<br/>
+YES:   Conversation with Cristina García & Dariel Suarez
+<br/>Duplicate found<br/>
+NO:   WIB Presents: Mock Superday Interviewing Practice
+<br/>YES:   Celebrating RI Entrepreneurship, Sushi +Networking
+<br/>Duplicate found<br/>
+NO:   Get a Financial Life! 
+<br/>YES:   World Literature and its Discontents | A Lecture 
+<br/>Duplicate found<br/>

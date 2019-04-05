@@ -23,7 +23,7 @@ class SecurityPlugin extends Plugin
 	public function getAcl()
 	{
 		//if the cache is being fucked and showing 404s, just set this to while true -scott
-		if (true) {  //!isset($this->persistent->acl)) {
+		if (!isset($this->persistent->acl)) {
 
 			$acl = new AclList();
 

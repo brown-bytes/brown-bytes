@@ -132,12 +132,12 @@ class Elements extends Component
         'market_snapshot' => array(
             'appear' => 2,
             'path' => 'homepage-panels/market'
-        ),
+        ),/*
         'authenticate' => array(
             'appear' => 0,
             'path' => 'homepage-panels/authenticate'
         ),
-        /*'community' => array(
+        'community' => array(
             'appear' => 0,
             'path' => 'homepage-panels/community'
         ),*/
@@ -152,7 +152,7 @@ class Elements extends Component
         'pangea' => array(
             'appear' => 2,
             'path' => 'homepage-panels/pangea'
-        ),*/
+        ),
         'calendar' => array(
             'appear' => 2,
             'path' => 'homepage-panels/brownbites'
@@ -160,7 +160,7 @@ class Elements extends Component
         'development' => array(
             'appear' => 2,
             'path' => 'homepage-panels/development'
-        )
+        )*/
     );
 
     /**

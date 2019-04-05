@@ -84,15 +84,14 @@ if($emails) {
 				}
 
 				//Insert into the database
-				$result = $mysqli->query(
-					"INSERT INTO plugin__event 
+				$string = "INSERT INTO plugin__event 
 						(
 							visible, 
 							brown_event_id, 
 							title, 
 							user_id, 
 							time_start, 
-							time_end, 
+							".($evnt['time_end'] ? "time_end," : "")." 
 							group_title, 
 							location, 
 							link, 
@@ -105,15 +104,16 @@ if($emails) {
 							'".$evnt['title']."',
 							0,
 							".$evnt['time_start'].",
-							".$evnt['time_end'].",
-							'Today@Brown',
+							".($evnt['time_end'] ? $evnt['time_end']."," : "")."
+							'TodayAtBrown',
 							'".$evnt['location']."',
 							'".$evnt['link']."',
 							".$evnt['date_int']."
-						)
-				");
+						)";
+				$result = $mysqli->query($string);
 
 				if(!$result) printf($mysqli->error."\n");
+				else printf("INSERTED<br/>\n");
 				unset($evnt);
 			}
 			
