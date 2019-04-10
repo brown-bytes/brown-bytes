@@ -51,7 +51,7 @@ class ScraperController extends ControllerBase
 					$new_event->time_start = $event->ts_start;
 					$new_event->time_end = (isset($event->ts) ? $event->ts_end : NULL);
 					$new_event->group_title = $event->group_title;
-					$new_event->location = $event->location;
+					$new_event->location = (isset($event->location) ? $event->location : "TBD");
 					$new_event->link = "https://events.brown.edu/".$event->href;
 					$new_event->date_int = $day_info;
                     $new_event->user_id = 0;
