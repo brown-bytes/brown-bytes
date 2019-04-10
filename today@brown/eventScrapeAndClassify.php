@@ -2,6 +2,7 @@
 
 require_once('../vendor/autoload.php');
 require_once('../vendor/simple_html_dom/simple_html_dom.php');
+require_once('manualTextAnalysis.php');
 
 $config = parse_ini_file("/brownbytesconfig/config.ini");
 $mysqli = new mysqli("localhost", $config["username"], $config["password"], "brown_bytes");
@@ -44,8 +45,12 @@ if($emails) {
 			unset($overview);
 
 			//We only want to create the classifier once. 
-			$classifier = new \Niiknow\Bayes(); //Create a classifier
-			$classifier->fromJson($json_weights); // load the classifier back from its JSON representation of weights.
+			//$classifier = new \Niiknow\Bayes(); //Create a classifier
+			//$classifier->fromJson($json_weights); // load the classifier back from its JSON representation of weights.
+
+			//Load in the new classifier
+			$classifier = new manualClassifier();
+
 
 			//Build associative arrays for each link. 
 			foreach($event_links as $event_link) {
@@ -56,14 +61,17 @@ if($emails) {
 					continue;
 				}
 				$information = json_decode($event_info);
+				$parse_string = $information->summary." ".$information->description;
 				/*
 				THIS is the point in the file where the description and title portion of the event are put into the Naive Bayes classifyer, which determines whether it is an event with free food or not.  
 				*/
-				$free_food = $classifier->categorize($information->summary." ".$information->description);
+				//$free_food = $classifier->categorize($information->summary." ".$information->description);
+				$free_food = $classifier->classify($parse_string);
 				if($free_food) {
 					printf("YES:   ".$information->summary."\n<br/>");	
 				} else {
 					printf("NO:   ".$information->summary."\n<br/>");
+					$classifier->categorize_no_food($parse_string);
 					continue;
 				}
 
@@ -82,6 +90,8 @@ if($emails) {
 					printf("Duplicate found<br/>\n");
 					continue;
 				}
+				//Add to the free food file:
+				$classifier->categorize_yes_food($parse_string);
 
 				//Insert into the database
 				$string = "INSERT INTO plugin__event 
