@@ -21,9 +21,8 @@ class manualClassifier {
 			$string_words = preg_split("/[\s,]+/", $string);
 			//This checks if there is an intersect (words appearing in both strings) which means there are free food words in the text
 			$intersect = array_intersect($this->words, $string_words);
-			if($intersect) {
-				return true;
-			}
+			//var_dump($this->words);
+			return $intersect;
 		}
 		return false;
 	}

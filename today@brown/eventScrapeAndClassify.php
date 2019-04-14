@@ -3,6 +3,7 @@
 require_once('../vendor/autoload.php');
 require_once('../vendor/simple_html_dom/simple_html_dom.php');
 require_once('manualTextAnalysis.php');
+require_once('../app/library/mailer.php');
 
 $config = parse_ini_file("/brownbytesconfig/config.ini");
 $mysqli = new mysqli("localhost", $config["username"], $config["password"], "brown_bytes");
@@ -51,7 +52,8 @@ if($emails) {
 			//Load in the new classifier
 			$classifier = new manualClassifier();
 
-
+			//This builds the informational email to scott@huson.com
+			$email_content = "<b>Has free food: </b><br/>";
 			//Build associative arrays for each link. 
 			foreach($event_links as $event_link) {
 				$event_info = file_get_contents($event_link);
@@ -61,14 +63,17 @@ if($emails) {
 					continue;
 				}
 				$information = json_decode($event_info);
-				$parse_string = $information->summary." ".$information->description;
+				$parse_string = preg_replace('/[^\da-z]/i', ' ', $information->summary." ".$information->description);
+				$parse_string = strtolower($parse_string);
 				/*
 				THIS is the point in the file where the description and title portion of the event are put into the Naive Bayes classifyer, which determines whether it is an event with free food or not.  
 				*/
 				//$free_food = $classifier->categorize($information->summary." ".$information->description);
 				$free_food = $classifier->classify($parse_string);
 				if($free_food) {
-					printf("YES:   ".$information->summary."\n<br/>");	
+
+					printf("YES:   ".$information->summary."\n<br/>");
+					$email_content .= $information->summary."<br/>Key Words: ".join(' ', $free_food)."<br/>";
 				} else {
 					printf("NO:   ".$information->summary."\n<br/>");
 					$classifier->categorize_no_food($parse_string);
@@ -109,7 +114,7 @@ if($emails) {
 						) 
 					VALUES 
 						(
-							0,
+							1,
 							".$evnt['id'].",
 							'".$evnt['title']."',
 							0,
@@ -126,7 +131,7 @@ if($emails) {
 				else printf("INSERTED<br/>\n");
 				unset($evnt);
 			}
-			
+			$email = new Mailer('scott@huson.com', 'Auto Scrape Complete', $email_content.'<br/>END.');
 			unset($classifier);
 
 			break; //Only want the most recent email, maybe change this for training and data collection. 

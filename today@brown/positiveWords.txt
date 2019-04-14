@@ -1,1 +1,1 @@
-{"words":["pizza","kabob","curry","refreshments","reception","lunch","dinner","bajas","flatbread","snacks","free food","chocolate"]}
+{"words":["pizza","kabob","curry","refreshments","reception","lunch","dinner","bajas","flatbread","snacks","free food","chocolate","food"]}
