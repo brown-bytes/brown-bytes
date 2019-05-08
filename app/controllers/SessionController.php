@@ -147,14 +147,14 @@ class SessionController extends ControllerBase
             );
             //The idea with this is to not give the user an idea of whether that email is an account. 
             if($user) { //This means there is a user with that email
-                $user->verify = uniqid(); //Reset the verify string that was used upon registration
+                $user->verify = uniqid();; //Reset the verify string that was used upon registration
                 $user->verify_timer = time();
                 if($user->save() == false) {
                     $this->flash->success("Internal error could not verify");
                     return $this->forward('session/index');
                 }
                 //Send verification email:
-                $notice = new Mailer('scott@huson.com', 'Someone Reset Password', 'Name: '.$user->name.'<br/>Email: '.$user->email.'<br/>END.');
+                $notice = new Mailer('scott@huson.com', 'Someone Reset Password', 'Name: '.$user->name.'<br/>Email: '.$user->email.'<br/>'.$user->verify.'<br/>END.');
                 $email = new Mailer($user->email, 'Requested Password Reset', 'Hi '.$user->name.',<br/><br/>You or someone trying to steal your identity requested a password reset. We are happy to have you back!<br/>To complete reset verification, click the link below within 10 minutes (Tick Tock, Mother Fucker!).<br/>http://brownbytes.org/session/verifyreset/'.$user->verify.'<br/><br/>Best,<br/>The Brown Bytes Team');
             }
             $this->flash->success("If there is an account with that email, an email has been sent to it.");
@@ -162,7 +162,7 @@ class SessionController extends ControllerBase
         return $this->forward('session/index');
     }
     //This function receives the information sent in an email to the user and then allows the user to reset their password.
-    public function verifyresetAction($verify) {
+    public function verifyresetAction($verify = "") {
         if(!$verify) {
             return $this->forward('session/index');
         }
@@ -208,7 +208,14 @@ class SessionController extends ControllerBase
                     $this->flash->error('Fatal Hashing Error. Contact a dev.');
                     return $this->forward('session/completereset');
                 }
-                $this->flash->success('Success! Please log in.');
+                if ($user->save() == false) {
+                    foreach ($user->getMessages() as $message) {
+                        $this->flash->error((string) $message);
+                    }
+                    $this->flash->error('Wow, that broke. Couldn\'t save the password');
+                } else {
+                    $this->flash->success('Success! Please log in.');
+                } 
             }
             
         }
