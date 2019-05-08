@@ -88,7 +88,7 @@ if($emails) {
 				$evnt['title'] = addslashes($information->summary);
 				$evnt['time_start'] = strtotime($information->start);
 				$evnt['time_end'] = ($information->start == $information->end ? NULL : strtotime($information->end));
-				$evnt['date_int'] = date('Ymd', strtotime($information->start));
+				$evnt['date_int'] = date('Ymd', strtotime($information->start) - 14400);
 
 				$result = $mysqli->query("SELECT * FROM plugin__event WHERE date_int=".$evnt['date_int']." AND brown_event_id=".$evnt['id']);
 				if($result->num_rows) { //If there is overlap, do not add this event. 
@@ -114,7 +114,7 @@ if($emails) {
 						) 
 					VALUES 
 						(
-							1,
+							0,
 							".$evnt['id'].",
 							'".$evnt['title']."',
 							0,

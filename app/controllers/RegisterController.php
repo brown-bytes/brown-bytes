@@ -21,6 +21,7 @@ class RegisterController extends ControllerBase
         $form = new RegisterForm;
 
         if ($this->request->isPost()) {
+            //printf("Started saving<br/>");
 
             $name = $this->request->getPost('name', array('string', 'striptags'));
             $email = $this->request->getPost('email', 'email');
@@ -31,28 +32,36 @@ class RegisterController extends ControllerBase
                 $this->flash->error('Passwords are different');
                 return false;
             }
-            
+            //printf("Trying Users<br/>");
             $user = new Users();
-            if(!$user->setPassword($password)) {
-                $this->flash->error('Fatal Hashing Error. Contact a dev.');
-                return $this->forward('register/index');
-            }
+
             $user->name = $name;
             $user->email = $email;
 
             //uniqid() for verification
             $verify = uniqid();
             $user->verify = $verify;
+
+            //printf("After Users<br/>");
+            if(!$user->setPassword($password)) {
+                $this->flash->error('Fatal Hashing Error. Contact a dev.');
+                return $this->forward('register/index');
+            }
+            //printf("Set Password");
+            
             
             require(APP_PATH . 'app/validators.php');
 
             $validator = new RegisterValidator();
             $messages = $validator->validate($user);
             if (count($messages)) {
+                $this->flash->setAutoescape(false);
                 foreach ($messages as $messagy) {
                     $this->flash->error((string) $messagy);
-                }  
+                }
+                unset($user);
             } else {  
+                //printf("Got to saving there is a problem");
                 if ($user->save() == false) {
                     foreach ($user->getMessages() as $message) {
                         $this->flash->error((string) $message);

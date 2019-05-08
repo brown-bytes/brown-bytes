@@ -64,7 +64,7 @@ class RegisterValidator extends Validation {
 			new Uniqueness(
 				[
 					'model' => new Users(),
-					'message' => 'There is already an account with this email. Try resetting your password.'
+					'message' => 'There is already an account with this email. Try <a href="session/tryreset" class="alert-link">resetting</a> your password.'
 				]
 			)
 		);
