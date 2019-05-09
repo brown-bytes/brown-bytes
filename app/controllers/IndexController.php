@@ -26,13 +26,20 @@ class IndexController extends ControllerBase
             <p class="mb-0"><u>Please</u> let me know through the <a href="contact/" class="alert-link">contact</a> page if you have any suggestions for features.</p>
         </div>
         ';*/
-        $message = '<div class="alert alert-danger alert-dismissable" role="alert">
+        /*$message = '<div class="alert alert-danger alert-dismissable" role="alert">
             <button type="button" class="close" data-dismiss="alert">×</button>
             <h4 class="alert-heading">Warning!</h4>
             <p>For the next week Brown Bytes will be under development. There are few free food events for Spring Break, so I will be building in more features to make your life easier.</p>
             <hr>
             <p class="mb-0"><u>Please</u> let me know through the <a href="contact/" class="alert-link">contact</a> page if you have any suggestions for features.</p>
+        </div>';*/
+        $message = '<div class="alert alert-info alert-dismissable" role="alert">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <h4 class="alert-heading">Whoops!</h4>
+            <p>You might have noticed our <a href="/register" class="alert-link">sign-up</a> page just straight-up wasn\'t working for the last 2 months. Well now it is! Sorry everyone, I now have error messaging set up so I\'ll get an email everytime something breaks.</p>
+            <hr>
+            <p class="mb-0"><u>Please</u> let me know through the <a href="/contact" class="alert-link">contact</a> page if you have any suggestions for features or complaints.</p>
         </div>';
-		//echo $message;
+		echo $message;
     }
 }
