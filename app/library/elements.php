@@ -16,18 +16,18 @@ class Elements extends Component
                 'caption' => 'Home',
                 'action' => 'index'
             ),
-            'marketplace' => array(
-                'caption' => 'Marketplace',
-                'action' => 'index'
-            ),
-            'about' => array(
-                'caption' => 'About',
-                'action' => 'index'
-            ),
             'calendar' => array(
                 'caption' => 'Calendar',
                 'action' => 'index'
             ),
+            /*'marketplace' => array(
+                'caption' => 'Marketplace',
+                'action' => 'index'
+            ),*/
+            'about' => array(
+                'caption' => 'About',
+                'action' => 'index'
+            )
         ),
         'navbar-right' => array(
             'session' => array(

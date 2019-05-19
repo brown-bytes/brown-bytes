@@ -2,7 +2,8 @@
 .collapse.in { display: inline-block;}
 </style>#}
 <h1>Free Food Calendar</h1>
-Below is a list of events collected from Events@Brown and handpicked by cool students. Make sure to verify the type of food available. 
+The following list of free food events were compiled by Brown Bytes users and ML algorithms. 
+<br/>Make sure to ensure the type of food available fits your dietary restrictions. 
 <h3>Actions</h3>
 {% if login %}
 	{{link_to("calendar/new", "Create Event", "class": "btn btn-primary btn-success")}}

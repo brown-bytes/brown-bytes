@@ -135,11 +135,20 @@ class SecurityPlugin extends Plugin
 
 		$allowed = $acl->isAllowed($role, $controller, $action);
 		if ($allowed != Acl::ALLOW) {
-			$dispatcher->forward(array(
-				'controller' => 'errors',
-				'action'     => 'show401'
-			));
-                        $this->session->destroy();
+			if($auth) {
+				//role is Users
+				$dispatcher->forward(array(
+					'controller' => 'errors',
+					'action'     => 'show401'
+				));
+	            $this->session->destroy();
+	        } else {
+	        	//Guests
+	        	$dispatcher->forward([
+				'controller' => 'session',
+				'action'     => 'index'
+			]);
+	        }
 			return false;
 		}
 	}
