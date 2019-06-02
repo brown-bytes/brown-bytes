@@ -133,6 +133,11 @@ August 24, 2018:
 	Finished the main portion of the website, including user profiles and offer creation. The system works in every way, and has been tested to a certain extent. The transaction protocol is scaffolded but has not been implemented on the website in a way that will alloy users to create transactions from offers. In this way I plan to develop the transaction protocol while the offer section of the website is live. The phalcon is super helpful and its really made things alot faster, making what I like to do (backend database stuff) easy while the styling is pretty much done for me.<br/>
 	I have bought the domain brownbytes.org, and I plan to move the server over in the coming weeks? Today I am planning on integrating the Brown bites calendar into the application, may have to change the database offer date protocol. 
 	As soon as I can put the site live, I can post on facebook groups for visibility and hopefully get some exposure before I release V1. Peace!
+May 19, 2019:
+	Many features have been implemented since last update. Noticed that the whole offer system just isn't usable without a critical mass of highly motivated people. I decided to build a free food calendar into the website as a way of attracting people to post offers. Then I realized that there was really no motivation to post offers, so I tranformed the website into primarily a free food calendar, which it is very good at :). After implementing scraping for events.brown.edu, automatic email scraping for today@brown initially using a Naive Bayes classifier to detect free food in descriptions, but then just automatic because the classifier was terrible, I added in user creation of events on the calendar, admin management and pretty much just brought it into production.
+	Right now it is being hosted a Google Cloud Platform VM, costing about 25 cents per day. 
+	Visit at brownbytes.org.
+	Also I have discussed partnering with BSA, a brown group that does storage and a bunch of other stuff on campus. 
 
 
 
