@@ -6,10 +6,13 @@ echo "starting\n";
 require_once('../vendor/autoload.php');
 require_once('../vendor/simple_html_dom/simple_html_dom.php');
 
-$myfile = fopen("events-data.txt", "a") or die("Unable to open file!");
+$myfile = fopen("events-data-2017.txt", "a") or die("Unable to open file!");
 $counter = 0;
-$start_date = '20190308';
+//The start date for when to receive events
+$start_date = '20170910';
 
+
+//This link will output json in counts of 50 or five days. Maybe we increase the number of calls?
 $html = file_get_contents('https://events.brown.edu/live/calendar/view/all/date/'.$start_date.'?user_tz=America%2FBelize&syntax=%3Cwidget%20type=%22events_calendar%22%3E%3Carg%20id=%22mini_cal_heat_map%22%3Etrue%3C/arg%3E%3Carg%20id=%22thumb_width%22%3E200%3C/arg%3E%3Carg%20id=%22thumb_height%22%3E200%3C/arg%3E%3Carg%20id=%22hide_repeats%22%3Etrue%3C/arg%3E%3Carg%20id=%22show_groups%22%3Etrue%3C/arg%3E%3Carg%20id=%22show_locations%22%3Etrue%3C/arg%3E%3Carg%20id=%22show_tags%22%3Etrue%3C/arg%3E%3Carg%20id=%22use_tag_classes%22%3Etrue%3C/arg%3E%3Carg%20id=%22search_all_events_only%22%3Etrue%3C/arg%3E%3Carg%20id=%22use_modular_templates%22%3Etrue%3C/arg%3E%3Carg%20id=%22display_all_day_events_last%22%3Etrue%3C/arg%3E%3C/widget%3E%27');
 //Check if failed
 if(!$html) {
