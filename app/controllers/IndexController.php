@@ -10,6 +10,7 @@ class IndexController extends ControllerBase
 
     public function indexAction()
     {
+        $this->assets->addCss('/css/homepage-styles.css', false);
     	/*$message = '
     	<div class="alert alert-danger" role="alert">
 			<h4 class="alert-heading">Hey!</h4>

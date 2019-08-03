@@ -121,22 +121,30 @@ class Elements extends Component
     }
 
     //these are the panels that will appear on the homepage of the website, the appear variable determines when they appear
-    //0 only not logged in
-    //1 only logged in
-    //2 all the time
+    // 0 only not logged in
+    // 1 only logged in
+    // 2 all the time
     private $_mainPanels = array(
         'welcome' => array(
             'appear' => 2,
             'path' => 'homepage-panels/welcome'
         ),
-        'market_snapshot' => array(
+        'stats' => array(
             'appear' => 2,
+            'path' => 'homepage-panels/stats'
+        ),
+        'market_snapshot' => array(
+            'appear' => 1,
             'path' => 'homepage-panels/market'
-        ),/*
+        ),
+        'development' => array(
+            'appear' => 1,
+            'path' => 'homepage-panels/development'
+        ),
         'authenticate' => array(
             'appear' => 0,
             'path' => 'homepage-panels/authenticate'
-        ),
+        ),/*
         'community' => array(
             'appear' => 0,
             'path' => 'homepage-panels/community'
@@ -156,10 +164,6 @@ class Elements extends Component
         'calendar' => array(
             'appear' => 2,
             'path' => 'homepage-panels/brownbites'
-        ),
-        'development' => array(
-            'appear' => 2,
-            'path' => 'homepage-panels/development'
         )*/
     );
 
