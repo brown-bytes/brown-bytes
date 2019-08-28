@@ -6,6 +6,7 @@ use Phalcon\Session;
 class CalendarController extends ControllerBase
 {
     public function initialize() {
+
         $this->tag->setTitle('Calendar');
         parent::initialize();
         $this->view->admin = false;
@@ -120,7 +121,7 @@ class CalendarController extends ControllerBase
 
                 $new_event->time_start = strtotime('+'.$i.' Week', $original_time_start);
                 $new_event->time_end = strtotime('+'.$i.' Week', $original_time_end);
-                $new_event->date_int = date('Ymd', $new_event->time_start);
+                $new_event->date_int = date('Ymd', $new_event->time_start - 14400); // This is the time difference from UTC or 4 hours
                 
                 if($this->session->admin && $new_event->date_int != $event->date_int) {
                     $this->flash->error('Looks like the dates are messed up. ACTION REQUIRED!');
