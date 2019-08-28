@@ -48,6 +48,6 @@ class IndexController extends ControllerBase
             <hr>
             <p class="mb-0"><u>Please</u> let me know through the <a href="/contact" class="alert-link">contact</a> page if you have any suggestions for features or complaints.</p>
         </div>';
-		echo $message;
+		//echo $message;
     }
 }

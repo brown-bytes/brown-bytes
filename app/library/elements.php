@@ -127,23 +127,28 @@ class Elements extends Component
     private $_mainPanels = array(
         'welcome' => array(
             'appear' => 2,
-            'path' => 'homepage-panels/welcome'
+            'path' => 'homepage-panels/welcome',
+            'padding' => '150px 0'
         ),
         'stats' => array(
             'appear' => 2,
-            'path' => 'homepage-panels/stats'
+            'path' => 'homepage-panels/stats',
+            'padding' => '50px 0'
         ),
         'market_snapshot' => array(
             'appear' => 1,
-            'path' => 'homepage-panels/market'
+            'path' => 'homepage-panels/market',
+            'padding' => '50px 0'
         ),
         'development' => array(
             'appear' => 1,
-            'path' => 'homepage-panels/development'
+            'path' => 'homepage-panels/development',
+            'padding' => '50px 0'
         ),
         'authenticate' => array(
             'appear' => 0,
-            'path' => 'homepage-panels/authenticate'
+            'path' => 'homepage-panels/authenticate',
+            'padding' => '50px 0'
         ),/*
         'community' => array(
             'appear' => 0,
@@ -172,18 +177,16 @@ class Elements extends Component
      */
     public function getMainPanels() {
         $auth = $this->session->get('auth');
-        $paths = array();
+        // This filters the different panels for whether the user is logged in
         foreach ($this->_mainPanels as $name => $info) {
-            if ($info['appear'] == 2) {
-                $paths[$name] = $info['path'];
-            } else if ($info['appear'] == 1 && $auth) {
-                $paths[$name] = $info['path'];
-            } else if (!$info['appear'] && !$auth) {
-                $paths[$name] = $info['path'];
-            } else {
-                continue;
+            // Conditionals done with a table
+            if ($auth && $info['appear']) {
+                $paths[$name] = $info;
+            } else if (!$auth && $info['appear'] != 1) {
+                $paths[$name] = $info;
             }
         }
         return $paths;
+
     }
 }

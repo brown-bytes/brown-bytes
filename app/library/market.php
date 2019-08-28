@@ -25,7 +25,6 @@ class Market extends Component {
         $return = array();
         foreach($offers as $offer) {
             //This just gets basic info for the summary snapshot
-
             $location = Locations::findFirstById($offer->location);
             $offer->location_name = $location->title;
             //get the id so it can be linked to
@@ -45,17 +44,9 @@ class Market extends Component {
     public function hasAccess($txn_id) {
     	$market = new Market();
 
-
     	$tran = Transaction::findFirstByTxn_id($txn_id);
     	//If the query cannot find anything, or if access is denied, return false. 
     	return ($tran ? $tran->isParty() : false);
-    	/* 
-    	Equivalent code:
-    	if ($tran) {
-    		return $tran->isParty();
-    	} else {
-    		return false;
-    	} */
     }
     /**
      * Gets information about a particular transaction
@@ -77,7 +68,6 @@ class Market extends Component {
      * @return Array
      **/
     public function getVisibleLocations() {
-    	//return array('shit');
     	$locations = Locations::findByVisible(1);
     	
     	return $locations;
@@ -187,5 +177,44 @@ class Market extends Component {
         $difference = $difference/24; 
         
         return (int)$difference." days";
+    }
+
+    /**
+     * Gets statistics on current free food events
+     * (This is used in a homepage panel)
+     * 
+     * @return Array (money saved, average events, events today)
+     */
+    public function getEventStats() {
+        //Get average events
+        $num_events = Event::count("visible = 1");
+        
+        $days_since_start = (time() - 1547758800) / (60 * 60 * 24); //Calculates the number of days since the first event
+        $relevant_days = $days_since_start - 100; // Subtract summer vacation and breaks
+        $average_num_events = (float)($num_events) / (float)$relevant_days;
+
+        //Calculate money saved
+        $money_saved_estimate = (float)($num_events) * (float)10;
+
+        //Get events today
+        $today_events = Event::count(
+            array("visible = 1 AND date_int = ".date('Ymd'))
+        ); 
+
+        $return = array("average" => round($average_num_events, 1), "today" => $today_events, "saved" => $this->moneyFormat($money_saved_estimate));
+        return $return;
+    }
+    private function moneyFormat($num) {
+        if($num > 1000) {
+            $x_array = explode(',', number_format(round($num)));
+            $x_parts = array('k', 'm', 'b', 't');
+            $x_count_parts = count($x_array) - 1;
+            $x_display = round($num);
+            $x_display = $x_array[0] . ((int) $x_array[1][0] !== 0 ? '.' . $x_array[1][0] : '');
+            $x_display .= $x_parts[$x_count_parts - 1];
+            return $x_display;
+        }
+      
+        return $num;
     }
 }

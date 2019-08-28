@@ -5,10 +5,11 @@
 {{ assets.outputCss('css') }}
 {#This generates all the panels#}
 
-{% for panel in elements.getMainPanels() %}
-	
-	<section style="height:100%;">
-    	{{partial(panel)}}
+{% for index, panel in elements.getMainPanels() %}
+	<section 
+		{{ panel['padding'] is defined ? 'style="padding: ' ~ panel['padding'] ~ ';"' : ''}}
+	>
+    	{{partial(panel['path'])}}
     </section>
     
 {% endfor %}
