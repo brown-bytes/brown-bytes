@@ -19,7 +19,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL|E_STRICT);
 
 //Open Stream to inbox:
-$mbox = imap_open('{imap.gmail.com:993/imap/ssl/novalidate-cert}INBOX', 'jebc3s9fflbhhkez@gmail.com','4bdude$$') or die('Cannot connect to Gmail: ' . imap_last_error());
+$mbox = imap_open('{imap.gmail.com:993/imap/ssl/novalidate-cert}INBOX', 'jebc3s9fflbhhkez@gmail.com','O2je!iEf9q2pK&') or die('Cannot connect to Gmail: ' . imap_last_error());
 if(!$mbox) { //Make sure it didn't fail
 	die('failed open');
 }
@@ -38,7 +38,9 @@ if($emails) {
 			$html = str_get_html(quoted_printable_decode($body)); //decodes, and parses the html
 			$event_links = array();
 			foreach($html->find('a[href^="https://today.brown.edu/events/"]') as $a) {
-				$event_links[] = substr($a->href, 0, 24).'api/'.substr($a->href, 24, (strpos($a->href, '?')-24)); //Put in the api key to get only the good info
+				$link = substr($a->href, 0, 24).'api/v1/'.substr($a->href, 24, (strpos($a->href, '?')-24)); //Put in the api key to get only the good info
+				print_r($link);
+				$event_links[] = $link;
 			}
 			$html->clear();
 			unset($html);

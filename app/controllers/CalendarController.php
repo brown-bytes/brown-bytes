@@ -13,7 +13,7 @@ class CalendarController extends ControllerBase
         if ($this->session->get('auth')) {
         	$this->view->login = true;
         	$this->view->user = $this->session->get('auth')['data']['name'];
-            if($this->session->admin) {
+            if($this->session->curator) {
                 $this->view->admin = true;
             }
         } else {
@@ -25,10 +25,10 @@ class CalendarController extends ControllerBase
     	//See if there are offers because those should be suggested above
     	$market = new Market();
     	$offers = $market->getSnapshot(); //Max is 7 offers (if it ever gets that high at one time)
-        if($this->session->admin) $number_of_events = 200;
+        if($this->session->curator) $number_of_events = 200;
         else $number_of_events = 30;
     	$this->view->offers = $offers;
-        $date_query_string = "date_int >= ".$this->getDateString().($this->session->admin ? "" : " AND visible = 1");
+        $date_query_string = "date_int >= ".$this->getDateString().($this->session->curator ? "" : " AND visible = 1");
         //Get all the calendar events:
         $events = Event::find( 
             [
@@ -38,22 +38,6 @@ class CalendarController extends ControllerBase
             ]
         );
 
-        if($this->session->admin) {
-            /*foreach($events as $event) {
-                if($event->user_id) {
-                    //var_dump($event);
-                    printf($event->user_id."<br/>");
-                    $user = Users::findFirstById($event->$user_id);
-                    if($user) {
-                        var_dump($user);
-                        $event->user_name = $user->name;
-                        printf($user."<br/>");
-                    }
-                } else {
-                    $event->user_name = 'Scraper';
-                }
-            }*/
-        }
         $this->view->events = $events;
 
     }
@@ -123,7 +107,7 @@ class CalendarController extends ControllerBase
                 $new_event->time_end = strtotime('+'.$i.' Week', $original_time_end);
                 $new_event->date_int = date('Ymd', $new_event->time_start - 14400); // This is the time difference from UTC or 4 hours
                 
-                if($this->session->admin && $new_event->date_int != $event->date_int) {
+                if($this->session->curator && $new_event->date_int != $event->date_int) {
                     $this->flash->error('Looks like the dates are messed up. ACTION REQUIRED!');
 
                 }

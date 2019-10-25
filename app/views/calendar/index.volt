@@ -8,7 +8,7 @@ The following list of free food events were compiled by Brown Bytes users and ML
 {% if login %}
 	{{link_to("calendar/new", "Create Event", "class": "btn btn-primary btn-success")}}
 	{% if admin %}
-		{{link_to("scraper", "Scrape", "class": "btn btn-primary btn-success")}}
+		{{link_to("scraper", "Scrape Events.Brown.edu", "class": "btn btn-primary btn-success")}}
 	{% endif %}
     <br/>
 {% else %}
@@ -86,9 +86,9 @@ The following list of free food events were compiled by Brown Bytes users and ML
  	 							<a target="_blank" href="{{ event.link }}" class="button btn btn-primary" title="See More Event Info"><span class="glyphicon glyphicon-info-sign"></span></a>
  	 							{% if admin %}
  	 								{% if event.visible %}
- 	 									<a href={{ "/calendar/hide/" ~ event.id }} class="button btn btn-danger" title="Hide"><span class="glyphicon glyphicon-remove"></span></a>
+ 	 									<a href={{ "/calendar/hide/" ~ event.id }} class="button btn btn-danger" title="Hide this event."><span class="glyphicon glyphicon-remove"></span></a>
  	 								{% else %}
- 	 									<a href={{ "/calendar/show/" ~ event.id }} class="button btn btn-success" title="Hide"><span class="glyphicon glyphicon-ok"></span></a>
+ 	 									<a href={{ "/calendar/show/" ~ event.id }} class="button btn btn-success" title="Show this event."><span class="glyphicon glyphicon-ok"></span></a>
  	 								{% endif %}
  	 							{% endif %}
 								{#{link_to(event.link, "<span class='glyphicon glyphicon-calendar'></span>", "class": "btn btn-primary", "local":false, "target": "blank")}#}

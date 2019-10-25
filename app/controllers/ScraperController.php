@@ -8,8 +8,8 @@ class ScraperController extends ControllerBase
     public function initialize() {
         $this->tag->setTitle('Scraper');
         parent::initialize();
-        //Check that you're an admin
-        if(!$this->session->admin) {
+        //Check that you're a curator
+        if(!$this->session->curator) {
         	//Send to unauthorized
         	return $this->forward('errors/show401');
         }
@@ -25,7 +25,7 @@ class ScraperController extends ControllerBase
 		//Check if failed
 		if(!$html) {
 			$this->flash->error('Could not get page');
-			return $this->forward('admin/index');
+			return $this->forward('calendar/index');
 		}
 
 		//Get all the events
@@ -61,13 +61,13 @@ class ScraperController extends ControllerBase
 							foreach ($new_event->getMessages() as $message) {
                     			$this->flash->error($message);
                 			}
-                			return $this->forward('admin/index');
+                			return $this->forward('calendar/index');
 						}
 					} catch (exception $e) {
 			            print_r($e);
 			            die();
 			            $this->flash->error('Special internal error');
-			            return $this->forward('admin/index');
+			            return $this->forward('calendar/index');
 			        }
 					$added++;
 
@@ -81,14 +81,14 @@ class ScraperController extends ControllerBase
 
     	//Flash the results of the scrape
         //Return back to the admin screen
-        return $this->forward('admin/index');
+        return $this->forward('calendar/index');
     }
 
     public function eventAction($event_id = 0, $weeks = 0) {
         
     	if((int)$event_id == 0) {
     		$this->flash->success('Please add the event_id to the end of the url');
-    		return $this->forward('admin/index');
+    		return $this->forward('calendar/index');
     	} else {
     		//Puts the event_id in the link for the calendar
     		$link = "https://events.brown.edu/live/calendar/view/event/event_id/".$event_id."?user_tz=America%2FBelize&syntax=%3Cwidget%20type%3D%22events_calendar%22%3E%3Carg%20id%3D%22mini_cal_heat_map%22%3Efalse%3C%2Farg%3E%3Carg%20id%3D%22thumb_width%22%3E200%3C%2Farg%3E%3Carg%20id%3D%22thumb_height%22%3E200%3C%2Farg%3E%3Carg%20id%3D%22hide_repeats%22%3Etrue%3C%2Farg%3E%3Carg%20id%3D%22show_groups%22%3Etrue%3C%2Farg%3E%3Carg%20id%3D%22show_locations%22%3Etrue%3C%2Farg%3E%3Carg%20id%3D%22show_tags%22%3Etrue%3C%2Farg%3E%3Carg%20id%3D%22use_tag_classes%22%3Etrue%3C%2Farg%3E%3Carg%20id%3D%22search_all_events_only%22%3Etrue%3C%2Farg%3E%3Carg%20id%3D%22use_modular_templates%22%3Etrue%3C%2Farg%3E%3Carg%20id%3D%22display_all_day_events_last%22%3Etrue%3C%2Farg%3E%3C%2Fwidget%3E";
@@ -97,18 +97,18 @@ class ScraperController extends ControllerBase
     		//Edge Case Check
     		if($html == '"[]"') {
     			$this->flash->error('Invalid Event ID');
-    			return $this->forward('admin/index');
+    			return $this->forward('calendar/index');
     		}
     		$json = json_decode($html);
     		if(!$json) {
     			$this->flash->error('Could not decode JSON');
-    			return $this->forward('admin/index');
+    			return $this->forward('calendar/index');
     		}
             //Checks to see whether the event already exists
             $existing = Event::findFirst("brown_event_id = ".$event_id);
             if($existing) {
                 $this->flash->error('Event is already in the calendar');
-                return $this->forward('admin/index');
+                return $this->forward('calendar/index');
             }
 
     		$event = new Event;
@@ -117,7 +117,7 @@ class ScraperController extends ControllerBase
     		$event->date_int = date('Ymd', strtotime($json->title));
     		if($event->date_int < date('Ymd')) {
     			$this->flash->error('Past event, cannot add to calendar: '.$event->date_int);
-    			return $this->forward('admin/index');
+    			return $this->forward('calendar/index');
     		}
     		$event->user_id = 0;
     		$event->brown_event_id = $event_id;
@@ -134,15 +134,15 @@ class ScraperController extends ControllerBase
 					foreach ($event->getMessages() as $message) {
             			$this->flash->error($message);
         			}
-        			return $this->forward('admin/index');
+        			return $this->forward('calendar/index');
 				}
 			} catch (exception $e) {
 	            $this->flash->error('Special internal error '.$e);
-	            return $this->forward('admin/index');
+	            return $this->forward('calendar/index');
 	        }
 
 	       	$this->flash->success('Added event with ID: '.$event_id);
-	       	return $this->forward('admin/index');
+	       	return $this->forward('calendar/index');
 
     	}
     }

@@ -62,8 +62,7 @@ class RegisterController extends ControllerBase
                     $this->flash->error((string) $messagy);
                 }
                 unset($user);
-            } else {  
-                printf("Got to saving there is a problem");
+            } else { 
                 if ($user->save() == false) {
                     foreach ($user->getMessages() as $message) {
                         $this->flash->error((string) $message);

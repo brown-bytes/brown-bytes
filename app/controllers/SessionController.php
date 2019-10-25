@@ -47,9 +47,10 @@ class SessionController extends ControllerBase
             $this->flash->error("Could not save time.");
 
         }
-        if ($user->isAdmin()) {
-            $this->session->admin = true;
-        }
+
+        $this->session->admin = $user->isAdmin();
+
+        $this->session->curator = ($user->isAdmin() || $user->status > 1);
     }
 
     /**
@@ -113,6 +114,7 @@ class SessionController extends ControllerBase
             )
         );
         if($user != false){
+            $notice = new Mailer('scott@huson.com', 'Someone Verified', 'Name: '.$user->name.'<br/>Email: '.$user->email.'<br/>END.');
             $user->status = 1; //Set status of user to active
             $user->verify = uniqid(); //Reset key so that users cannot change password with same id. 
             if($user->save() == false) {
