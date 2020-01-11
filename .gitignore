@@ -3,3 +3,8 @@ cache/volt/
 **/._.DS_Store
 tbs_homepage/
 vendor
+/._.DS_Store
+/storage/
+/visatonano/
+/testingSegFault/
+*.code-workspace

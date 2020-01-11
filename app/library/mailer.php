@@ -15,8 +15,8 @@ class Mailer extends Component {
      **/
     public function __construct($recipient, $subject, $body)
     {
-        
-        $mj = new \Mailjet\Client('3ea98d36a9b0c2519e7d3699a93f2c82', '44d2586dee20675d84bfd4e4c67583b5');
+        $config = $this->config;
+        $mj = new \Mailjet\Client($config->mailer->public, $config->mailer->private);
         $body = [
             'FromEmail' => "robot@brownbytes.org",
             'FromName' => "Brown Bytes",
