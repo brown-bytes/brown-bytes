@@ -133,7 +133,7 @@ if($emails) {
 				else printf("INSERTED<br/>\n");
 				unset($evnt);
 			}
-			$email = new Mailer('scott@huson.com', 'Auto Scrape Complete', $email_content.'<br/>END.');
+			$email = new Mailer('scott@huson.com', 'Auto Scrape Complete', $email_content.'<br/>END.', False);
 			unset($classifier);
 
 			break; //Only want the most recent email, maybe change this for training and data collection. 

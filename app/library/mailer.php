@@ -1,6 +1,7 @@
 <?php
 
 use Phalcon\Mvc\User\Component;
+use Phalcon\Config\Adapter\Ini as ConfigIni;
 use \Mailjet\Resources;
 /**
  * Mailer
@@ -13,9 +14,13 @@ class Mailer extends Component {
     /**
      * Sends an email on construct with the given parameters
      **/
-    public function __construct($recipient, $subject, $body)
+    public function __construct($recipient, $subject, $body, $custom_config = False)
     {
-        $config = $this->config;
+        if ($custom_config) {
+            $config = new ConfigIni('/brownbytesconfig/config.ini');
+        } else {
+            $config = $this->config;
+        }
         $mj = new \Mailjet\Client($config->mailer->public, $config->mailer->private);
         $body = [
             'FromEmail' => "robot@brownbytes.org",
