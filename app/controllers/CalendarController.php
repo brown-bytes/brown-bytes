@@ -3,6 +3,7 @@
 use Phalcon\Flash;
 use Phalcon\Session;
 
+
 class CalendarController extends ControllerBase
 {
     public function initialize() {
@@ -27,7 +28,26 @@ class CalendarController extends ControllerBase
     	$offers = $market->getSnapshot(); //Max is 7 offers (if it ever gets that high at one time)
         if($this->session->curator) $number_of_events = 200;
         else $number_of_events = 30;
-    	$this->view->offers = $offers;
+        $this->view->offers = $offers;
+
+        $TIME_OFFSET = 18000;
+
+
+        // $sql = "
+        //     SELECT 
+        //         id,
+        //         title,
+        //         user_id, 
+        //         visible,
+        //         time_start,
+        //         time_end,
+        //         location, 
+        //         link,
+        //         date_int
+        //     FROM Event 
+        //     WHERE date_int >= ".$this->getDateString().($this->session->curator ? "" : " AND visible = 1").
+        //     " ORDER BY time_start ASC LIMIT ".$number_of_events;
+        // $events = $this->modelsManager->executeQuery($sql);
         $date_query_string = "date_int >= ".$this->getDateString().($this->session->curator ? "" : " AND visible = 1");
         //Get all the calendar events:
         $events = Event::find( 
@@ -37,9 +57,27 @@ class CalendarController extends ControllerBase
             'order' => 'time_start ASC'
             ]
         );
-
-        $this->view->events = $events;
-
+        $events_formatted = [];
+        foreach ($events as $ev) {
+            // Change all the dates
+            $ev->id = $ev->id*2+69;
+            $ev->day_string = date('l, F j', $ev->time_start - $TIME_OFFSET);
+            $ev->time_start = date('g:i A', $ev->time_start - $TIME_OFFSET);
+            $ev->time_end = date('g:i A', $ev->time_end - $TIME_OFFSET);
+        }
+        if ($this->request->isPost()) {
+            // Make sure the post is from one of our apps
+            // Want to make this inconspicuous so will just use queries
+            $ip = $_SERVER['REMOTE_ADDR'];
+            
+            //$sql = "INSERT INTO plugin__app_request (";
+            //$events = $this->modelsManager->executeQuery($sql);
+            // Record information that the post happened
+            echo json_encode($events_formatted);
+            die(); //Only output json, nothing else
+        } else {
+            $this->view->events = $events_formatted;
+        }
     }
     //Create a new event
     public function newAction() {
@@ -47,9 +85,11 @@ class CalendarController extends ControllerBase
     }
 
     public function createAction() {
+        
         if (!$this->request->isPost()) {
             return $this->forward("calendar/new");
         }
+        $TIME_OFFSET = 18000;
 
         $form = new EventForm(new Event);
         $event = new Event();
@@ -69,12 +109,12 @@ class CalendarController extends ControllerBase
 
         //Set all the fields here:
         $event->date_int = substr($event->date, 0, 4).substr($event->date, 5, 2).substr($event->date, 8, 2); //This is the date string for comparison
-        $original_time_start = strtotime($event->date_int.'T'.$event->time_number) + 14400;
+        $original_time_start = strtotime($event->date_int.'T'.$event->time_number) + $TIME_OFFSET;
         if($original_time_start < time()) {
             $this->flash->error('Please only use future dates.');
             return $this->forward('calendar/new');
         }
-        $original_time_end = strtotime($event->date_int.'T'.$event->time_number_end) + 14400;
+        $original_time_end = strtotime($event->date_int.'T'.$event->time_number_end) + $TIME_OFFSET;
         if($original_time_start > $original_time_end) {
             $this->flash->error('End time must be after start.');
             return $this->forward('calendar/new');
@@ -105,7 +145,7 @@ class CalendarController extends ControllerBase
 
                 $new_event->time_start = strtotime('+'.$i.' Week', $original_time_start);
                 $new_event->time_end = strtotime('+'.$i.' Week', $original_time_end);
-                $new_event->date_int = date('Ymd', $new_event->time_start - 14400); // This is the time difference from UTC or 4 hours
+                $new_event->date_int = date('Ymd', $new_event->time_start - $TIME_OFFSET); // This is the time difference from UTC or 4 hours
                 
                 if($this->session->curator && $new_event->date_int != $event->date_int) {
                     $this->flash->error('Looks like the dates are messed up. ACTION REQUIRED!');

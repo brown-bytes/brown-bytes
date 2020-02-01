@@ -8,6 +8,7 @@ require_once('../app/library/mailer.php');
 $config = parse_ini_file("/brownbytesconfig/config.ini");
 $mysqli = new mysqli("localhost", $config["username"], $config["password"], "brown_bytes");
 
+$TIME_OFFSET = 18000
 
 //Make the that classifyer weights file can be opened.
 $myfile = fopen("../today@brown/classifier_weights.txt", "r") or die("Unable to open file!");
@@ -90,7 +91,7 @@ if($emails) {
 				$evnt['title'] = addslashes($information->summary);
 				$evnt['time_start'] = strtotime($information->start);
 				$evnt['time_end'] = ($information->start == $information->end ? NULL : strtotime($information->end));
-				$evnt['date_int'] = date('Ymd', strtotime($information->start) - 14400);
+				$evnt['date_int'] = date('Ymd', strtotime($information->start) - $TIME_OFFSET);
 
 				$result = $mysqli->query("SELECT * FROM plugin__event WHERE date_int=".$evnt['date_int']." AND brown_event_id=".$evnt['id']);
 				if($result->num_rows) { //If there is overlap, do not add this event. 

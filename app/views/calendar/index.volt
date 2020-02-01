@@ -49,7 +49,7 @@ The following list of free food events were compiled by Brown Bytes users and ML
 				{% set daystring = event.date_int %}
 				<div class="day_header {{ daystring }}">
 					<h3 class="day-string">
-						{{ date('l, F j', event.time_start) }} <a title="Collapse" onClick="return collapse('{{daystring }}')"><span class="glyphicon glyphicon-chevron-down"></span></a>
+						{{ event.day_string }} <a title="Collapse" onClick="return collapse('{{daystring}}')"><span class="glyphicon glyphicon-chevron-down"></span></a>
 					</h3>
 				</div>
 				<div id="collapse{{ daystring }}" class="day"> {# This makes sure that all the days events are held in a single div to be collapsed #}
@@ -64,11 +64,11 @@ The following list of free food events were compiled by Brown Bytes users and ML
 								{{ event.title }}
 							</h3>
 							<p class="panel-subtitle">
-								{{ date('g:i A', event.time_start - 14400) }}
+								{{ event.time_start }}
 								
 								{% if event.time_end %}
 									 - 
-									{{ date('g:i A', event.time_end - 14400) }}
+									{{ event.time_end }}
 								{% endif %}
 							</p>
 							<p class="panel-text">
@@ -91,8 +91,6 @@ The following list of free food events were compiled by Brown Bytes users and ML
  	 									<a href={{ "/calendar/show/" ~ event.id }} class="button btn btn-success" title="Show this event."><span class="glyphicon glyphicon-ok"></span></a>
  	 								{% endif %}
  	 							{% endif %}
-								{#{link_to(event.link, "<span class='glyphicon glyphicon-calendar'></span>", "class": "btn btn-primary", "local":false, "target": "blank")}#}
-								{# <a target="_blank" href="{{event.link}}" class="card-link">Details</a>#}
 							</div>
 						</div>
 					</div>
