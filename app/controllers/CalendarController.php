@@ -55,15 +55,18 @@ class CalendarController extends ControllerBase
             $date_query_string,
             'limit' => $number_of_events,
             'order' => 'time_start ASC'
-            ]
-        );
-        $events_formatted = [];
+    		]
+	);
+	// TODO really can fix this its so inneficient
+	$formatted_events = [];
+	
         foreach ($events as $ev) {
             // Change all the dates
-            $ev->id = $ev->id*2+69;
+            $ev->id = $ev->id;
             $ev->day_string = date('l, F j', $ev->time_start - $TIME_OFFSET);
             $ev->time_start = date('g:i A', $ev->time_start - $TIME_OFFSET);
-            $ev->time_end = date('g:i A', $ev->time_end - $TIME_OFFSET);
+	    $ev->time_end = date('g:i A', $ev->time_end - $TIME_OFFSET);
+	    $formatted_events[] = $ev;
         }
         if ($this->request->isPost()) {
             // Make sure the post is from one of our apps
@@ -73,10 +76,10 @@ class CalendarController extends ControllerBase
             //$sql = "INSERT INTO plugin__app_request (";
             //$events = $this->modelsManager->executeQuery($sql);
             // Record information that the post happened
-            echo json_encode($events_formatted);
+            echo json_encode($formatted_events);
             die(); //Only output json, nothing else
         } else {
-            $this->view->events = $events_formatted;
+            $this->view->events = $formatted_events;
         }
     }
     //Create a new event
