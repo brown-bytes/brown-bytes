@@ -1,2 +1,28 @@
-Starting Scrape<br/>https://today.brown.edu/api/v1/events/125534NO:   Discussion with author Peggy Orenstein
+Starting Scrape<br/>https://today.brown.edu/api/v1/events/126157https://today.brown.edu/api/v1/events/126355https://today.brown.edu/api/v1/events/126354https://today.brown.edu/api/v1/events/126431https://today.brown.edu/api/v1/events/126356https://today.brown.edu/api/v1/events/125703https://today.brown.edu/api/v1/events/126394https://today.brown.edu/api/v1/events/126387https://today.brown.edu/api/v1/events/126335https://today.brown.edu/api/v1/events/126315https://today.brown.edu/api/v1/events/126427https://today.brown.edu/api/v1/events/126406https://today.brown.edu/api/v1/events/126436https://today.brown.edu/api/v1/events/126397https://today.brown.edu/api/v1/events/126364https://today.brown.edu/api/v1/events/126400https://today.brown.edu/api/v1/events/126384https://today.brown.edu/api/v1/events/126115https://today.brown.edu/api/v1/events/125387https://today.brown.edu/api/v1/events/126031https://today.brown.edu/api/v1/events/126033https://today.brown.edu/api/v1/events/126012NO:   Social & Cognitive Science Brown Bag Sem. Series
+<br/>NO:   Tik Tok Tea with ADPhi Society!
+<br/>NO:   THE BROWN JUG is holding info sessions!
+<br/>NO:   Join Brown Consulting Club!
+<br/>YES:   What Happens in Vegas
+<br/>INSERTED<br/>
+NO:   MusicWorks Collective: In Concert | Feb 1, 7:00 pm
+<br/>NO:   Open House at Book Arts Studio!
+<br/>YES:   English Language Workshop: Brown Bag News
+<br/>INSERTED<br/>
+NO:   Audition for SotG's 24 Hour Play Festival!
+<br/>NO:   Cybersecurity Master's Project Presentations
+<br/>NO:   Brown Band First Spring Rehearsal!
+<br/>NO:   Public Health DUG Ice Cream Social
+<br/>NO:   Support Group for Black Womxn
+<br/>NO:   Brown Youth Project GB Meeting!
+<br/>YES:   Christian Fellowship on February 7
+<br/>INSERTED<br/>
+NO:   A Conversation from Space with Jessica Meir '99
+<br/>YES:   CS, DSI & STS Talk: Natasha Singer, NYT
+<br/>INSERTED<br/>
+YES:   Conversations in Latinx Art
+<br/>INSERTED<br/>
+NO:   Register Your Personal Property Today!
+<br/>NO:   Ajantha Subramanian Book Adda — The Caste of Merit
+<br/>NO:   Rumela Sen—Rebel Retirement Through Exit Networks
+<br/>NO:   RI Medieval Circle Lecture: Mohamad Ballan
 <br/>
