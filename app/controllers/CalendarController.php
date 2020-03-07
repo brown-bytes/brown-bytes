@@ -65,7 +65,7 @@ class CalendarController extends ControllerBase
             $ev->time_start = date('g:i A', $ev->time_start - $TIME_OFFSET);
             $ev->time_end = date('g:i A', $ev->time_end - $TIME_OFFSET);
         }
-        if ($this->request->isPost()) {
+        if ($this->request->isPost() && $_SERVER['REQUEST_URI'] == "/calendar/index") {
             // Make sure the post is from one of our apps
             // Want to make this inconspicuous so will just use queries
             $ip = $_SERVER['REMOTE_ADDR'];
